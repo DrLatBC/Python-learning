@@ -27,6 +27,22 @@ RESPONSES = {
     "2": False,
     "n": False,
 }
+
+DIFFICULTY_PRESETS = {
+    "easy": "easy",
+    "e": "easy",
+    "medium": "medium",
+    "m": "medium",
+    "hard": "hard",
+    "h": "hard",
+}
+
+PRESET_LEVELS = {
+    "easy": {"lives": 20, "max": 1000},
+    "medium": {"lives": 15, "max": 2500},
+    "hard": {"lives": 10, "max": 10000}
+
+}
 heat_levels = [
             (0.01, "Scorching"),
             (0.03, "Hot"),
@@ -82,12 +98,17 @@ def high_low(secret, guess):
         return "low"
     return "correct!"
 
-def get_int(prompt, low = 1, high = None, default = None):
+def get_int(prompt, low = 1, high = None, allow_default = None, allow_preset = False):
     while True:
         try:
-            raw = input(prompt).strip()
-            if raw == "" and default is not None: 
-                return default
+            raw = input(prompt)
+            choice = raw.strip().lower()
+            if allow_preset == True:
+                preset = DIFFICULTY_PRESETS.get(choice)
+                if preset is not None:
+                    return preset
+            if choice == "" and allow_default is not None: 
+                return allow_default
             else:
              value = int(raw)
             if value < low or (high is not None and value > high):
@@ -102,20 +123,25 @@ play_again  = True
 
 while play_again:
 
-    difficult = get_int("How high you want this bad boy to go? It's between 1 and: ")
-    suggested = math.ceil(math.log2(difficult))
-    original_lives = get_int(f"How many lives do you want? (Press enter for suggested default: {suggested}): ", low = 1, default = suggested)
-    lives = original_lives
-    secret = random.randint(1, difficult)
-    print(f"Ok, it's between 1 and {difficult}, so go fucking nuts.")
-    guess = get_int("What is your guess?: ", high = difficult)
+    max_num = get_int("Pick difficulty (easy/medium/hard/custom): ", allow_preset= True)
+    if max_num in PRESET_LEVELS:
+        preset = PRESET_LEVELS[max_num]
+        lives = preset["lives"]
+        max_num = preset["max"]
+    else:
+        suggested = math.ceil(math.log2(max_num))
+        original_lives = get_int(f"How many lives do you want? (Press enter for suggested default: {suggested}): ", low = 1, allow_default = suggested)
+        lives = original_lives
+    print(f"Ok, it's between 1 and {max_num}, so go fucking nuts.")
+    guess = get_int("What is your guess?: ", high = max_num)
+    secret = random.randint(1, max_num)
     tries = 1
     guess_history = []
 
     while guess != secret and lives > 0:
         delta = diff(secret, guess)
         direction = high_low(secret, guess)
-        ratio = delta / float(difficult)
+        ratio = delta / float(max_num)
         for cutoff, label in heat_levels:
             if ratio <= cutoff:
                 hot_cold = label
@@ -136,11 +162,11 @@ while play_again:
         if lives == 0:
             break
         guess_history.append({"try": tries, "guess": guess, "high/low": direction, "hot/cold": hot_cold})
-        guess = get_int("What is your guess?: ", high = difficult)
+        guess = get_int("What is your guess?: ", high = max_num)
         tries += 1
     delta = diff(secret, guess)
     direction = high_low(secret, guess)
-    ratio = delta / float(difficult)
+    ratio = delta / float(max_num)
     for cutoff, label in heat_levels:
         if ratio <= cutoff:
                 hot_cold = label
@@ -156,7 +182,7 @@ while play_again:
     history = (input("Do you want to see your guess history? ")).strip().lower()
     history_input = RESPONSES.get(history, False)
     if history_input == True:
-        print(f"Max number was set at: {difficult}.")
+        print(f"Max number was set at: {max_num}.")
         print(f"Max lives was set to: {original_lives}")
         for e in guess_history:
             print(f"Attempt #{e['try']:>2} | Guess: {e['guess']:>6} | HL: {e['high/low']:>5} | Hot/Cold:  {e['hot/cold']:>4}")
@@ -170,4 +196,3 @@ while play_again:
 if play_again == False:
     template = random.choice(GOODBYE) + "."
     print(template.format(nick=random.choice(STUPID_NICKNAMES)))
-    
