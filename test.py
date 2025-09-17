@@ -1,0 +1,173 @@
+import random
+import math
+
+STUPID_NICKNAMES = [
+    "bro",
+    "dawg",
+    "homie",
+    "big dawg",
+    "doogan",
+    "broganheimer",
+    "dude",
+    "dudeski",
+    "bro beans",
+    "playa",
+    "foo",
+
+]
+RESPONSES = {
+    "yes": True,
+    "y": True,
+    "sure": True,
+    "yup": True,
+    "1": True,
+    "no": False,
+    "nope": False,
+    "naw": False,
+    "2": False,
+    "n": False,
+}
+heat_levels = [
+            (0.01, "Scorching"),
+            (0.03, "Hot"),
+            (0.10, "Warm"),
+            (0.15, "Cold"),
+            (0.20, "Freezing"),
+            (1.00, "Arctic"),
+]
+GOODBYE = [
+    "I didn't want to play with you anyways, {nick}",
+    "Some say this is the only way to win",
+    "You weren't going to win anyways, {nick}.",
+    "This is why no one will remember your name, {nick}"
+]
+INSULTS = {
+    "bad_range": [
+        "Nah, {nick}, lock the fuck in.",
+        "You fucking with me or naw?",
+        "....No.",
+        "You're having a laugh, {nick}.",
+    ],
+    "not_number": [
+    "That's not even a number, {nick}.",
+    "Are you typing with your elbows?",
+    "Fuck off.",
+    ],
+    "game_over": [
+        "Game over, {nick}. Number was {secret}.. what's so hard about that?",
+        "Your goose is cooked, {nick}. Should have guessed {secret}",
+        "Pack it up. It was {secret}, why not just guess that on the first try, {nick}?",
+        "Skill issue. Obviously it was {secret}, {nick}.",
+        "Get fucked, {nick}. It was {secret} the whole time",
+
+
+    ]
+}
+
+insult_ix = {reason: 0 for reason in INSULTS}
+
+def burn(reason, **ctx):
+    i = insult_ix[reason] % len(INSULTS[reason])
+    template = INSULTS[reason][i]
+    print(template.format(nick=random.choice(STUPID_NICKNAMES), **ctx))
+    insult_ix[reason] += 1
+
+def diff(secret,guess):
+    return abs(secret - guess)
+
+def high_low(secret, guess):
+    if guess > secret:
+       return "high"
+    elif guess < secret:
+        return "low"
+    return "correct!"
+
+def get_int(prompt, low = 1, high = None, default = None):
+    while True:
+        try:
+            raw = input(prompt).strip()
+            if raw == "" and default is not None: 
+                return default
+            else:
+             value = int(raw)
+            if value < low or (high is not None and value > high):
+                burn("bad_range")
+                continue
+            return value
+        except ValueError:
+            burn("not_number")
+
+
+play_again  = True
+
+while play_again:
+
+    difficult = get_int("How high you want this bad boy to go? It's between 1 and: ")
+    suggested = math.ceil(math.log2(difficult))
+    original_lives = get_int(f"How many lives do you want? (Press enter for suggested default: {suggested}): ", low = 1, default = suggested)
+    lives = original_lives
+    secret = random.randint(1, difficult)
+    print(f"Ok, it's between 1 and {difficult}, so go fucking nuts.")
+    guess = get_int("What is your guess?: ", high = difficult)
+    tries = 1
+    guess_history = []
+
+    while guess != secret and lives > 0:
+        delta = diff(secret, guess)
+        direction = high_low(secret, guess)
+        ratio = delta / float(difficult)
+        for cutoff, label in heat_levels:
+            if ratio <= cutoff:
+                hot_cold = label
+                break
+
+        if direction == "high":
+            high_low_msg = f"too high, {random.choice(STUPID_NICKNAMES)}"
+        elif direction == "low":
+            high_low_msg = f"too low, {random.choice(STUPID_NICKNAMES)}"
+        else:
+            high_low_msg = ""
+
+        hot_cold_msg = hot_cold + "..."
+        msg = f"{hot_cold_msg} {high_low_msg}".strip()
+        unit = "life" if lives == 1 else "lives"
+        print(f"{msg}. | Lives: {lives} → {lives-1}")
+        lives -= 1
+        if lives == 0:
+            break
+        guess_history.append({"try": tries, "guess": guess, "high/low": direction, "hot/cold": hot_cold})
+        guess = get_int("What is your guess?: ", high = difficult)
+        tries += 1
+    delta = diff(secret, guess)
+    direction = high_low(secret, guess)
+    ratio = delta / float(difficult)
+    for cutoff, label in heat_levels:
+        if ratio <= cutoff:
+                hot_cold = label
+                break
+        
+    guess_history.append({"try": tries, "guess": guess, "high/low": direction, "hot/cold": hot_cold})
+    if lives == 0:
+        burn("game_over", secret=secret) 
+    elif tries == 1:
+            print("You got it in 1 try!")
+    else:
+            print(f"You got it after {tries} tries, you fucking dunce.")
+    history = (input("Do you want to see your guess history? ")).strip().lower()
+    history_input = RESPONSES.get(history, False)
+    if history_input == True:
+        print(f"Max number was set at: {difficult}.")
+        print(f"Max lives was set to: {original_lives}")
+        for e in guess_history:
+            print(f"Attempt #{e['try']:>2} | Guess: {e['guess']:>6} | HL: {e['high/low']:>5} | Hot/Cold:  {e['hot/cold']:>4}")
+    
+    else:
+        continue
+    raw = (input("Play again? (y/n:) "))
+    clean = raw.strip().lower()
+    play_again = RESPONSES.get(clean, False)
+
+if play_again == False:
+    template = random.choice(GOODBYE) + "."
+    print(template.format(nick=random.choice(STUPID_NICKNAMES)))
+    
