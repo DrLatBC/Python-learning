@@ -58,16 +58,29 @@ GOODBYE = [
     "This is why no one will remember your name, {nick}"
 ]
 INSULTS = {
-    "bad_range": [
-        "Nah, {nick}, lock the fuck in.",
-        "You fucking with me or naw?",
-        "....No.",
+    "range_high": [
+        "Nah, {nick}, you're trying to guess the moon",
+        "Aim higher, {nick}, this ain't limbo.",
+        "Your brain rot is winning, too high.",
         "You're having a laugh, {nick}.",
     ],
-    "not_number": [
-    "That's not even a number, {nick}.",
-    "Are you typing with your elbows?",
-    "Fuck off.",
+    "range_low": [
+        "We don't do negatives here, {nick}.",
+        "It has to be 1 or higher, {nick}.",
+        "You're an idiot, no negatives.",
+        "Stop being dumb",
+
+    ],
+    "unkown_option_insult": [
+        "That's not even a number, {nick}.",
+        "Are you typing with your elbows?",
+        "Fuck off.",
+    ],
+    "unknown_option_helpful": [
+        "I don't know what that means, {nick}. Why don't you try again?",
+        "Try using one of the options above!",
+
+         
     ],
     "game_over": [
         "Game over, {nick}. Number was {secret}.. what's so hard about that?",
@@ -98,25 +111,32 @@ def high_low(secret, guess):
         return "low"
     return "correct!"
 
-def get_int(prompt, low = 1, high = None, allow_default = None, allow_preset = False):
+def get_int(prompt, low = 1, high = None, allow_default = None, allow_preset = False, number_expected = True):
     while True:
-        try:
             raw = input(prompt)
             choice = raw.strip().lower()
-            if allow_preset == True:
+            if allow_preset:
                 preset = DIFFICULTY_PRESETS.get(choice)
                 if preset is not None:
                     return preset
             if choice == "" and allow_default is not None: 
                 return allow_default
-            else:
-             value = int(raw)
-            if value < low or (high is not None and value > high):
-                burn("bad_range")
+            try:
+                value = int(choice)
+            except ValueError:
+                if number_expected:
+                     burn("unknown_option_helpful")
+                else:
+                     burn("unknown_option_insult")
                 continue
+            if value < low: 
+                 burn("range_low")
+                 continue
+            if high is not None and value > high:
+                 burn("range_high")
+                 continue
             return value
-        except ValueError:
-            burn("not_number")
+
 
 
 play_again  = True
