@@ -38,8 +38,8 @@ DIFFICULTY_PRESETS = {
 }
 
 PRESET_LEVELS = {
-    "easy": {"lives": 20, "max": 1000},
-    "medium": {"lives": 15, "max": 2500},
+    "easy": {"lives": 20, "max": 3000},
+    "medium": {"lives": 15, "max": 5000},
     "hard": {"lives": 10, "max": 10000}
 
 }
@@ -126,13 +126,13 @@ while play_again:
     max_num = get_int("Pick difficulty (easy/medium/hard/custom): ", allow_preset= True)
     if max_num in PRESET_LEVELS:
         preset = PRESET_LEVELS[max_num]
-        lives = preset["lives"]
+        original_lives = preset["lives"]
         max_num = preset["max"]
     else:
         suggested = math.ceil(math.log2(max_num))
         original_lives = get_int(f"How many lives do you want? (Press enter for suggested default: {suggested}): ", low = 1, allow_default = suggested)
-        lives = original_lives
-    print(f"Ok, it's between 1 and {max_num}, so go fucking nuts.")
+    lives = original_lives
+    print(f"Ok, it's between 1 and {max_num} and you have {lives} lives, so go fucking nuts.")
     guess = get_int("What is your guess?: ", high = max_num)
     secret = random.randint(1, max_num)
     tries = 1
@@ -182,6 +182,7 @@ while play_again:
     history = (input("Do you want to see your guess history? ")).strip().lower()
     history_input = RESPONSES.get(history, False)
     if history_input == True:
+        print()
         print(f"Max number was set at: {max_num}.")
         print(f"Max lives was set to: {original_lives}")
         for e in guess_history:
