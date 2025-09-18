@@ -52,20 +52,28 @@ DIFFICULTY_SETTINGS = {
 
 }
 heat_levels = [
-            (0.01, "Scorching"),
-            (0.03, "Hot"),
-            (0.10, "Warm"),
-            (0.15, "Cold"),
-            (0.20, "Freezing"),
-            (1.00, "Arctic"),
+    (0.01, "Scorching"),
+    (0.03, "Hot"),
+    (0.10, "Warm"),
+    (0.15, "Cold"),
+    (0.20, "Freezing"),
+    (1.00, "Arctic"),
 ]
+performance_levels = [
+    (0.2, "mythic"),
+    (0.5, "clean"),
+    (0.75, "solid"),
+    (1.0, "messy"),
+    (float("inf"), "clown"),
+]
+
 GOODBYE = [
     "I didn't want to play with you anyways, {nick}",
     "Some say this is the only way to win",
     "You weren't going to win anyways, {nick}.",
     "This is why no one will remember your name, {nick}"
 ]
-INSULTS = {
+MESSAGES = {
     "range_high": [
         "Nah, {nick}, you're trying to guess the moon",
         "Aim lower, {nick}, this ain't limbo.",
@@ -81,8 +89,6 @@ INSULTS = {
         "Stop being dumb",
         "Can't even count to zero, sad",
         "A positive and a negative walk into a bar. The bartender says...we don't serve negatives here.",
-
-
     ],
     "unknown_option_insult": [
         "That's not even a number, {nick}.",
@@ -95,7 +101,6 @@ INSULTS = {
         "Try using one of the options above!",
         "Not sure what that means, {nick}. Try typing a number or one of the listed options.",
         "That ain't valid, {nick}. Pick a difficulty or drop a number instead."
-         
     ],
     "game_over": [
         "Game over, {nick}. Number was {secret}.. what's so hard about that?",
@@ -105,18 +110,43 @@ INSULTS = {
         "Get fucked, {nick}. It was {secret} the whole time",
         "Out of lives, {nick}. The number {secret} was laughing at you the whole time.",
         "You lose, {nick}. It’s {secret}—and you still couldn’t find it.",
-
-
+    ],
+    "mythic": [
+        "Legendary run, {nick}. You cracked the code like a god.",
+        "That was cleaner than a world-record speedrun, {nick}.",
+        "Peak gamer instincts. Mythic tier achieved, {nick}.",
+    ],
+    "clean": [
+        "Sharp guessing, {nick}. Almost pro tier.",
+        "No wasted moves, {nick}. That was smooth as hell.",
+        "You made that look easy, {nick}. Clean run.",
+    ],
+    "solid": [
+        "Respectable work, {nick}. You held it together.",
+        "Not perfect, but solid enough, {nick}.",
+        "That’s a textbook clear, {nick}. Nothing flashy, nothing sloppy.",
+    ],
+    "messy": [
+        "Messy, {nick}, but hey—you still got there.",
+        "Like watching someone parallel park for five minutes, {nick}.",
+        "Not pretty, {nick}. A win’s a win, though.",
+    ],
+    "clown": [
+        "Embarrassing, {nick}. Pure clown show.",
+        "Bro, {nick}, I lost brain cells watching that.",
+        "Send in the circus music, {nick}. You’re the act.",
     ]
 }
 
-insult_ix = {reason: 0 for reason in INSULTS}
 
-def burn(reason, **ctx):
-    i = insult_ix[reason] % len(INSULTS[reason])
-    template = INSULTS[reason][i]
+
+message_ix = {reason: 0 for reason in MESSAGES}
+
+def say_line(reason, **ctx):
+    i = message_ix[reason] % len(MESSAGES[reason])
+    template = MESSAGES[reason][i]
     print(template.format(nick=random.choice(STUPID_NICKNAMES), **ctx))
-    insult_ix[reason] += 1
+    message_ix[reason] += 1
 
 def diff(secret,guess):
     return abs(secret - guess)
@@ -142,15 +172,15 @@ def get_int(prompt, low = 1, high = None, allow_default = None, allow_preset = F
                 value = int(choice)
             except ValueError:
                 if number_expected:
-                     burn("unknown_option_insult")
+                     say_line("unknown_option_insult")
                 else:
-                     burn("unknown_option_helpful")
+                     say_line("unknown_option_helpful")
                 continue
             if value < low: 
-                 burn("range_low")
+                 say_line("range_low")
                  continue
             if high is not None and value > high:
-                 burn("range_high")
+                 say_line("range_high")
                  continue
             return value
 
@@ -165,13 +195,13 @@ while play_again:
         preset = DIFFICULTY_SETTINGS[max_num]
         original_lives = preset["lives"]
         max_num = preset["max"]
-    elif max_num == "custom":
-        max_num = get_int("Custom it is, {nick}. What do you want for a max number?: ".format(nick=random.choice(STUPID_NICKNAMES)), number_expected = True)
         suggested = math.ceil(math.log2(max_num))
-        original_lives = get_int(f"How many lives do you want? (Press enter for suggested default: {suggested}): ", allow_default = suggested, number_expected = True)
     else:
+        if max_num == "custom":
+            max_num = get_int("Custom it is, {nick}. What do you want for a max number?: ".format(nick=random.choice(STUPID_NICKNAMES)), number_expected = True)
         suggested = math.ceil(math.log2(max_num))
         original_lives = get_int(f"How many lives do you want? (Press enter for suggested default: {suggested}): ", allow_default = suggested, number_expected = True)
+
     lives = original_lives
     print(f"Ok, it's between 1 and {max_num} and you have {lives} lives, so go fucking nuts.")
     guess = get_int("What is your guess?: ", high = max_num, number_expected = True)
@@ -214,12 +244,23 @@ while play_again:
                 break
         
     guess_history.append({"try": tries, "guess": guess, "high/low": direction, "hot/cold": hot_cold})
+
     if lives == 0:
-        burn("game_over", secret=secret) 
+        say_line("game_over", secret=secret) 
     elif tries == 1:
-            print("You got it in 1 try!")
+            print("You got it in 1 try! That's fucking amazing!")
+    elif tries == 2:
+            print("Not quite a hole in 1, but gahd DAMN.")
     else:
-            print(f"You got it after {tries} tries, you fucking dunce.")
+        perf_ratio = tries / suggested
+        for cutoff, label in performance_levels:
+             if perf_ratio <= cutoff:
+                  verdict = label
+                  break
+        print(f"You got it in {tries} tries.")
+        say_line(verdict)
+         
+    
     history = (input("Do you want to see your guess history? ")).strip().lower()
     history_input = RESPONSES.get(history, False)
     if history_input == True:
