@@ -93,7 +93,7 @@ INSULTS = {
     "unknown_option_helpful": [
         "I don't know what that means, {nick}. Why don't you try again?",
         "Try using one of the options above!",
-        "Not sure what that means, {nick}. Try typing a number or one of the listed options."
+        "Not sure what that means, {nick}. Try typing a number or one of the listed options.",
         "That ain't valid, {nick}. Pick a difficulty or drop a number instead."
          
     ],
@@ -128,7 +128,7 @@ def high_low(secret, guess):
         return "low"
     return "correct!"
 
-def get_int(prompt, low = 1, high = None, allow_default = False, allow_preset = False, number_expected = False):
+def get_int(prompt, low = 1, high = None, allow_default = None, allow_preset = False, number_expected = False):
     while True:
             raw = input(prompt)
             choice = raw.strip().lower()
@@ -136,15 +136,15 @@ def get_int(prompt, low = 1, high = None, allow_default = False, allow_preset = 
                 preset = DIFFICULTY_ALIASES.get(choice)
                 if preset is not None:
                     return preset
-            if choice == "" and allow_default is not False: 
+            if choice == "" and allow_default is not None: 
                 return allow_default
             try:
                 value = int(choice)
             except ValueError:
                 if number_expected:
-                     burn("unknown_option_helpful")
-                else:
                      burn("unknown_option_insult")
+                else:
+                     burn("unknown_option_helpful")
                 continue
             if value < low: 
                  burn("range_low")
@@ -166,7 +166,9 @@ while play_again:
         original_lives = preset["lives"]
         difficulty_choice = preset["max"]
     elif difficulty_choice == "custom":
-         difficulty_choice = get_int("Custom it is, {nick}. What do you want for a max number?: ".format(nick=random.choice(STUPID_NICKNAMES)), number_expected = True)
+        difficulty_choice = get_int("Custom it is, {nick}. What do you want for a max number?: ".format(nick=random.choice(STUPID_NICKNAMES)), number_expected = True)
+        suggested = math.ceil(math.log2(difficulty_choice))
+        original_lives = get_int(f"How many lives do you want? (Press enter for suggested default: {suggested}): ", allow_default = suggested, number_expected = True)
     else:
         suggested = math.ceil(math.log2(difficulty_choice))
         original_lives = get_int(f"How many lives do you want? (Press enter for suggested default: {suggested}): ", allow_default = suggested, number_expected = True)
