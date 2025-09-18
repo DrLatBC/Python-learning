@@ -60,10 +60,10 @@ heat_levels = [
     (1.00, "Arctic"),
 ]
 performance_levels = [
-    (0.2, "mythic"),
-    (0.5, "clean"),
-    (0.75, "solid"),
-    (1.0, "messy"),
+    (0.3, "mythic"),
+    (0.6, "clean"),
+    (0.85, "solid"),
+    (1.1, "messy"),
     (float("inf"), "clown"),
 ]
 
@@ -79,8 +79,8 @@ MESSAGES = {
         "Aim lower, {nick}, this ain't limbo.",
         "Your brain rot is winning, too high.",
         "You're having a laugh, {nick}.",
-        "Relax, {nick}, we’re not counting stars.",
-        "Too high, {nick}. This isn’t the stock market.",
+        "Relax, {nick}, we're not counting stars.",
+        "Too high, {nick}. This isn't the stock market.",
     ],
     "range_low": [
         "We don't do negatives here, {nick}.",
@@ -109,7 +109,7 @@ MESSAGES = {
         "Skill issue. Obviously it was {secret}, {nick}.",
         "Get fucked, {nick}. It was {secret} the whole time",
         "Out of lives, {nick}. The number {secret} was laughing at you the whole time.",
-        "You lose, {nick}. It’s {secret}—and you still couldn’t find it.",
+        "You lose, {nick}. It's {secret}—and you still couldn't find it.",
     ],
     "mythic": [
         "Legendary run, {nick}. You cracked the code like a god.",
@@ -124,17 +124,17 @@ MESSAGES = {
     "solid": [
         "Respectable work, {nick}. You held it together.",
         "Not perfect, but solid enough, {nick}.",
-        "That’s a textbook clear, {nick}. Nothing flashy, nothing sloppy.",
+        "That's a textbook clear, {nick}. Nothing flashy, nothing sloppy.",
     ],
     "messy": [
         "Messy, {nick}, but hey—you still got there.",
         "Like watching someone parallel park for five minutes, {nick}.",
-        "Not pretty, {nick}. A win’s a win, though.",
+        "Not pretty, {nick}. A win's a win, though.",
     ],
     "clown": [
         "Embarrassing, {nick}. Pure clown show.",
         "Bro, {nick}, I lost brain cells watching that.",
-        "Send in the circus music, {nick}. You’re the act.",
+        "Send in the circus music, {nick}. You're the act.",
     ]
 }
 
