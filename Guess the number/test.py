@@ -161,7 +161,7 @@ def high_low(secret, guess):
 def get_int(prompt, low = 1, high = None, allow_default = None, allow_preset = False, number_expected = False):
     while True:
             raw = input(prompt)
-            choice = raw.strip().lower()
+            choice = raw.strip().replace(",", "").replace("_", "").lower()
             if allow_preset:
                 preset = DIFFICULTY_ALIASES.get(choice)
                 if preset is not None:
