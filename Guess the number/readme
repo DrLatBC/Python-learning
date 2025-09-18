@@ -52,7 +52,7 @@ Running the game
 
 Clone the repo and run:
 
-python test.py
+python ZeroSumShame.py
 
 Notes
 
