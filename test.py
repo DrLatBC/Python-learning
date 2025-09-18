@@ -13,6 +13,12 @@ STUPID_NICKNAMES = [
     "bro beans",
     "playa",
     "foo",
+    "mashed brotato",
+    "bruv",
+    "pal",
+    "buddy",
+    "guy",
+
 
 ]
 RESPONSES = {
@@ -28,16 +34,18 @@ RESPONSES = {
     "n": False,
 }
 
-DIFFICULTY_PRESETS = {
+DIFFICULTY_ALIASES = {
     "easy": "easy",
     "e": "easy",
     "medium": "medium",
     "m": "medium",
     "hard": "hard",
     "h": "hard",
+    "custom": "custom",
+    "c": "custom",
 }
 
-PRESET_LEVELS = {
+DIFFICULTY_SETTINGS = {
     "easy": {"lives": 20, "max": 3000},
     "medium": {"lives": 15, "max": 5000},
     "hard": {"lives": 10, "max": 10000}
@@ -60,26 +68,33 @@ GOODBYE = [
 INSULTS = {
     "range_high": [
         "Nah, {nick}, you're trying to guess the moon",
-        "Aim higher, {nick}, this ain't limbo.",
+        "Aim lower, {nick}, this ain't limbo.",
         "Your brain rot is winning, too high.",
         "You're having a laugh, {nick}.",
+        "Relax, {nick}, we’re not counting stars.",
+        "Too high, {nick}. This isn’t the stock market.",
     ],
     "range_low": [
         "We don't do negatives here, {nick}.",
-        "It has to be 1 or higher, {nick}.",
+        "It has to be higher than 1, {nick}.",
         "You're an idiot, no negatives.",
         "Stop being dumb",
+        "Can't even count to zero, sad",
+        "A positive and a negative walk into a bar. The bartender says...we don't serve negatives here.",
+
 
     ],
-    "unkown_option_insult": [
+    "unknown_option_insult": [
         "That's not even a number, {nick}.",
         "Are you typing with your elbows?",
         "Fuck off.",
+        "Invalid input. Pretend you can read and try again.",
     ],
     "unknown_option_helpful": [
         "I don't know what that means, {nick}. Why don't you try again?",
         "Try using one of the options above!",
-
+        "Not sure what that means, {nick}. Try typing a number or one of the listed options."
+        "That ain't valid, {nick}. Pick a difficulty or drop a number instead."
          
     ],
     "game_over": [
@@ -88,6 +103,8 @@ INSULTS = {
         "Pack it up. It was {secret}, why not just guess that on the first try, {nick}?",
         "Skill issue. Obviously it was {secret}, {nick}.",
         "Get fucked, {nick}. It was {secret} the whole time",
+        "Out of lives, {nick}. The number {secret} was laughing at you the whole time.",
+        "You lose, {nick}. It’s {secret}—and you still couldn’t find it.",
 
 
     ]
@@ -111,15 +128,15 @@ def high_low(secret, guess):
         return "low"
     return "correct!"
 
-def get_int(prompt, low = 1, high = None, allow_default = None, allow_preset = False, number_expected = True):
+def get_int(prompt, low = 1, high = None, allow_default = False, allow_preset = False, number_expected = False):
     while True:
             raw = input(prompt)
             choice = raw.strip().lower()
             if allow_preset:
-                preset = DIFFICULTY_PRESETS.get(choice)
+                preset = DIFFICULTY_ALIASES.get(choice)
                 if preset is not None:
                     return preset
-            if choice == "" and allow_default is not None: 
+            if choice == "" and allow_default is not False: 
                 return allow_default
             try:
                 value = int(choice)
@@ -143,25 +160,27 @@ play_again  = True
 
 while play_again:
 
-    max_num = get_int("Pick difficulty (easy/medium/hard/custom): ", allow_preset= True)
-    if max_num in PRESET_LEVELS:
-        preset = PRESET_LEVELS[max_num]
+    difficulty_choice = get_int("Pick difficulty (easy/medium/hard/custom): ", allow_preset = True)
+    if difficulty_choice in DIFFICULTY_SETTINGS:
+        preset = DIFFICULTY_SETTINGS[difficulty_choice]
         original_lives = preset["lives"]
-        max_num = preset["max"]
+        difficulty_choice = preset["max"]
+    elif difficulty_choice == "custom":
+         difficulty_choice = get_int("Custom it is, {nick}. What do you want for a max number?: ".format(nick=random.choice(STUPID_NICKNAMES)), number_expected = True)
     else:
-        suggested = math.ceil(math.log2(max_num))
-        original_lives = get_int(f"How many lives do you want? (Press enter for suggested default: {suggested}): ", low = 1, allow_default = suggested)
+        suggested = math.ceil(math.log2(difficulty_choice))
+        original_lives = get_int(f"How many lives do you want? (Press enter for suggested default: {suggested}): ", allow_default = suggested, number_expected = True)
     lives = original_lives
-    print(f"Ok, it's between 1 and {max_num} and you have {lives} lives, so go fucking nuts.")
-    guess = get_int("What is your guess?: ", high = max_num)
-    secret = random.randint(1, max_num)
+    print(f"Ok, it's between 1 and {difficulty_choice} and you have {lives} lives, so go fucking nuts.")
+    guess = get_int("What is your guess?: ", high = difficulty_choice, number_expected = True)
+    secret = random.randint(1, difficulty_choice)
     tries = 1
     guess_history = []
 
     while guess != secret and lives > 0:
         delta = diff(secret, guess)
         direction = high_low(secret, guess)
-        ratio = delta / float(max_num)
+        ratio = delta / float(difficulty_choice)
         for cutoff, label in heat_levels:
             if ratio <= cutoff:
                 hot_cold = label
@@ -182,11 +201,11 @@ while play_again:
         if lives == 0:
             break
         guess_history.append({"try": tries, "guess": guess, "high/low": direction, "hot/cold": hot_cold})
-        guess = get_int("What is your guess?: ", high = max_num)
+        guess = get_int("What is your guess?: ", high = difficulty_choice, number_expected = True)
         tries += 1
     delta = diff(secret, guess)
     direction = high_low(secret, guess)
-    ratio = delta / float(max_num)
+    ratio = delta / float(difficulty_choice)
     for cutoff, label in heat_levels:
         if ratio <= cutoff:
                 hot_cold = label
@@ -203,7 +222,7 @@ while play_again:
     history_input = RESPONSES.get(history, False)
     if history_input == True:
         print()
-        print(f"Max number was set at: {max_num}.")
+        print(f"Max number was set at: {difficulty_choice}.")
         print(f"Max lives was set to: {original_lives}")
         for e in guess_history:
             print(f"Attempt #{e['try']:>2} | Guess: {e['guess']:>6} | HL: {e['high/low']:>5} | Hot/Cold:  {e['hot/cold']:>4}")
