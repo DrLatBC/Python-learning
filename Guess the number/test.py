@@ -247,9 +247,9 @@ while play_again:
 
     if lives == 0:
         say_line("game_over", secret=secret) 
-    elif tries == 1:
+    elif tries == 1 and max_num > 50:
             print("You got it in 1 try! That's fucking amazing!")
-    elif tries == 2:
+    elif tries == 2 and max_num > 50:
             print("Not quite a hole in 1, but gahd DAMN.")
     else:
         perf_ratio = tries / suggested
