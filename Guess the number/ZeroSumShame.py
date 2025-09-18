@@ -252,8 +252,8 @@ while play_again:
     elif tries == 2 and max_num > 50:
             print("Not quite a hole in 1, but gahd DAMN.")
     else:
-        if suggested < 1:
-             suggested = 1
+        if suggested < 0.1:
+             suggested = 0.1
         perf_ratio = tries / suggested
         for cutoff, label in performance_levels:
              if perf_ratio <= cutoff:
