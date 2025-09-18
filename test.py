@@ -160,29 +160,29 @@ play_again  = True
 
 while play_again:
 
-    difficulty_choice = get_int("Pick difficulty (easy/medium/hard/custom): ", allow_preset = True)
-    if difficulty_choice in DIFFICULTY_SETTINGS:
-        preset = DIFFICULTY_SETTINGS[difficulty_choice]
+    max_num = get_int("Pick difficulty (easy/medium/hard/custom): ", allow_preset = True)
+    if max_num in DIFFICULTY_SETTINGS:
+        preset = DIFFICULTY_SETTINGS[max_num]
         original_lives = preset["lives"]
-        difficulty_choice = preset["max"]
-    elif difficulty_choice == "custom":
-        difficulty_choice = get_int("Custom it is, {nick}. What do you want for a max number?: ".format(nick=random.choice(STUPID_NICKNAMES)), number_expected = True)
-        suggested = math.ceil(math.log2(difficulty_choice))
+        max_num = preset["max"]
+    elif max_num == "custom":
+        max_num = get_int("Custom it is, {nick}. What do you want for a max number?: ".format(nick=random.choice(STUPID_NICKNAMES)), number_expected = True)
+        suggested = math.ceil(math.log2(max_num))
         original_lives = get_int(f"How many lives do you want? (Press enter for suggested default: {suggested}): ", allow_default = suggested, number_expected = True)
     else:
-        suggested = math.ceil(math.log2(difficulty_choice))
+        suggested = math.ceil(math.log2(max_num))
         original_lives = get_int(f"How many lives do you want? (Press enter for suggested default: {suggested}): ", allow_default = suggested, number_expected = True)
     lives = original_lives
-    print(f"Ok, it's between 1 and {difficulty_choice} and you have {lives} lives, so go fucking nuts.")
-    guess = get_int("What is your guess?: ", high = difficulty_choice, number_expected = True)
-    secret = random.randint(1, difficulty_choice)
+    print(f"Ok, it's between 1 and {max_num} and you have {lives} lives, so go fucking nuts.")
+    guess = get_int("What is your guess?: ", high = max_num, number_expected = True)
+    secret = random.randint(1, max_num)
     tries = 1
     guess_history = []
 
     while guess != secret and lives > 0:
         delta = diff(secret, guess)
         direction = high_low(secret, guess)
-        ratio = delta / float(difficulty_choice)
+        ratio = delta / float(max_num)
         for cutoff, label in heat_levels:
             if ratio <= cutoff:
                 hot_cold = label
@@ -203,11 +203,11 @@ while play_again:
         if lives == 0:
             break
         guess_history.append({"try": tries, "guess": guess, "high/low": direction, "hot/cold": hot_cold})
-        guess = get_int("What is your guess?: ", high = difficulty_choice, number_expected = True)
+        guess = get_int("What is your guess?: ", high = max_num, number_expected = True)
         tries += 1
     delta = diff(secret, guess)
     direction = high_low(secret, guess)
-    ratio = delta / float(difficulty_choice)
+    ratio = delta / float(max_num)
     for cutoff, label in heat_levels:
         if ratio <= cutoff:
                 hot_cold = label
@@ -224,7 +224,7 @@ while play_again:
     history_input = RESPONSES.get(history, False)
     if history_input == True:
         print()
-        print(f"Max number was set at: {difficulty_choice}.")
+        print(f"Max number was set at: {max_num}.")
         print(f"Max lives was set to: {original_lives}")
         for e in guess_history:
             print(f"Attempt #{e['try']:>2} | Guess: {e['guess']:>6} | HL: {e['high/low']:>5} | Hot/Cold:  {e['hot/cold']:>4}")
