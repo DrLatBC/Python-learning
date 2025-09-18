@@ -1,5 +1,59 @@
-Runs in any cmd terminal via python. VSC for instance.
-easy: (lives: 20, max: 3000)
-medium: (lives: 15, max: 5000)
-hard: (lives: 10, max: 10000)
-Default: the minimum number of lives you will need to win if playing optimally without hints. 
+Guess the Number (Insult Edition)
+
+This is not your average number guessing game. You'll pick a difficulty, try to find the secret number, and get roasted along the way. The game gives you hints, but it never passes up a chance to talk trash when you mess up.
+
+How it works
+
+Choose a difficulty: easy, medium, hard, or custom.
+
+The game picks a secret number between 1 and your chosen maximum.
+
+You get a limited number of lives to guess it right.
+
+Every wrong guess gives you hot/cold feedback (how close you are) and high/low hints (which direction to go).
+
+And, of course, you'll catch an insult or two.
+
+Features
+
+Preset difficulties with smart defaults.
+
+Custom mode for full control over range and lives.
+
+Hot/Cold system with heat levels ranging from Scorching to Arctic.
+
+Performance rating at the end: Mythic, Clean, Solid, Messy, or Clown.
+
+Rotating insults so the lines don't repeat until they cycle through.
+
+Guess history log so you can review how bad (or good) you were.
+
+Smart input handling: type garbage, get mocked. Nail it fast, get praised.
+
+Example
+
+Pick difficulty (easy/medium/hard/custom): hard
+Ok, it's between 1 and 10000 and you have 10 lives, so go nuts.
+What is your guess?: 420
+Warm... too low, bro beans. | Lives: 10 → 9
+What is your guess?: 666
+Scorching... too high, dawg. | Lives: 9 → 8
+What is your guess?: 500
+You got it after 3 tries.
+Not perfect, but solid enough, playa.
+
+Requirements
+
+Python 3.9+ (tested on 3.13)
+
+No external libraries
+
+Running the game
+
+Clone the repo and run:
+
+python test.py
+
+Notes
+
+This project started as a learning playground and turned into a surprisingly fun game. It's equal parts number guessing, roasting, and chaos.
