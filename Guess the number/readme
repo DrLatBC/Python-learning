@@ -1,0 +1,5 @@
+Runs in any cmd terminal via python. VSC for instance.
+easy: (lives: 20, max: 3000)
+medium: (lives: 15, max: 5000)
+hard: (lives: 10, max: 10000)
+Default: the minimum number of lives you will need to win if playing optimally without hints. 

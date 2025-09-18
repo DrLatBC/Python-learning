@@ -203,9 +203,9 @@ while play_again:
         original_lives = get_int(f"How many lives do you want? (Press enter for suggested default: {suggested}): ", allow_default = suggested, number_expected = True)
 
     lives = original_lives
+    secret = random.randint(1, max_num)
     print(f"Ok, it's between 1 and {max_num} and you have {lives} lives, so go fucking nuts.")
     guess = get_int("What is your guess?: ", high = max_num, number_expected = True)
-    secret = random.randint(1, max_num)
     tries = 1
     guess_history = []
 
