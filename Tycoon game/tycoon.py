@@ -120,7 +120,13 @@ MESSAGES = {
         "Embarrassing, {nick}. Pure clown show.",
         "Bro, {nick}, I lost brain cells watching that.",
         "Send in the circus music, {nick}. You're the act.",
-    ]
+    ],
+    "too_poor": [
+    "You're broke as hell, {nick}. Come back with some cash.",
+    "Not enough money, {nick}. This isn't a charity.",
+    "Keep dreaming, {nick}—your wallet's empty.",
+    "You can't afford that, {nick}. Maybe try begging?",
+]
 }
 state = {
      "money": 10,
@@ -178,11 +184,12 @@ def ask_action(prompt, menu_options = MAIN_MENU):
 def handle_buy_workers(state, worker_buy_amount = 1, worker_buy_cost = 10, worker_income_amount = 10):
      worker_total_cost = worker_buy_amount * worker_buy_cost
      if state["money"] >= worker_total_cost:
-          state["worker"] = state["workers"] + worker_buy_amount
+          state["workers"] = state["workers"] + worker_buy_amount
           state["money"] = state["money"] - worker_total_cost
           state["income"] = state["income"] + (worker_buy_amount* worker_income_amount)
           return (state, "ok")
      else:
+          say_line("too_poor")
           return (state, "too poor")
      
 def handle_skip(state):
