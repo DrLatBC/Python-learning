@@ -8,7 +8,11 @@ MAIN_MENU = [
      Choice("[2] Skip turn", value = "skip"),
      Choice("Quit", value = "quit")
 ]
-
+BUY_MENU = [
+    Choice("[1] Child labor. Income: 10", value = "children"),
+    Choice("[2] Little guys. Income: 20", value = "little_guys"),
+    Choice("[3] Full sized adults. Income: 30", value = "full_adults"),
+]
 STUPID_NICKNAMES = [
     "bro",
     "dawg",
@@ -131,7 +135,9 @@ MESSAGES = {
 state = {
      "money": 10,
      "income": 0,
-     "workers": 0,
+     "children_workers": 0,
+     "little_guy_workers": 0,
+     "full_size_adult_workers": 0,
      "turn": 0,
 }
 
