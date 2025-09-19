@@ -1,5 +1,13 @@
 import random
 import math
+import questionary
+from questionary import Choice
+
+MAIN_MENU = [
+     Choice("[1] Buy worker", value = "buy_workers"),
+     Choice("[2] Skip turn", value = "skip"),
+     Choice("Quit", value = "quit")
+]
 
 STUPID_NICKNAMES = [
     "bro",
@@ -114,7 +122,12 @@ MESSAGES = {
         "Send in the circus music, {nick}. You're the act.",
     ]
 }
-
+state = {
+     "money": 10,
+     "income": 0,
+     "workers": 0,
+     "turn": 0,
+}
 
 
 message_ix = {reason: 0 for reason in MESSAGES}
@@ -124,7 +137,7 @@ def say_line(reason, **ctx):
     template = MESSAGES[reason][i]
     print(template.format(nick=random.choice(STUPID_NICKNAMES), **ctx))
     message_ix[reason] += 1
-    
+
 def get_int(prompt, low = 1, high = None, allow_default = None, allow_preset = False, number_expected = False):
     while True:
             raw = input(prompt)
@@ -150,17 +163,55 @@ def get_int(prompt, low = 1, high = None, allow_default = None, allow_preset = F
                  say_line("range_high")
                  continue
             return value
+def tick(state, tick_amount = 1):
+     temp_income = ((state["income"]) * tick_amount)
+     state["money"] = state["money"] + temp_income
+     state["turn"] = state["turn"] + tick_amount
+     return state
+
+def ask_action(prompt, menu_options = MAIN_MENU):
+     result = questionary.select(
+          prompt,
+          choices = menu_options
+     ).ask()
+     return result
+def handle_buy_workers(state, worker_buy_amount = 1, worker_buy_cost = 10, worker_income_amount = 10):
+     worker_total_cost = worker_buy_amount * worker_buy_cost
+     if state["money"] >= worker_total_cost:
+          state["worker"] = state["workers"] + worker_buy_amount
+          state["money"] = state["money"] - worker_total_cost
+          state["income"] = state["income"] + (worker_buy_amount* worker_income_amount)
+          return (state, "ok")
+     else:
+          return (state, "too poor")
+     
+def handle_skip(state):
+     skip_time = get_int("How many days do you want to skip?: ")
+     state = tick(state, tick_amount = skip_time)
+     return (state, "Time passes")
+def print_status(state):
+     print(f"Day: {state['turn']} | $: {state['money']} | Workers: {state['workers']} | Income: {state['income']}")
+def handle_quit(state):
+    play_again = False
+    return (state, "quit")
+HANDLERS = {
+    "buy_workers": handle_buy_workers,
+    "skip": handle_skip,
+    "quit": handle_quit,
+}
 
 
 
 play_again  = True
-
 while play_again:
+    print(f"Day: {state['turn']} | $: {state['money']} | Workers: {state['workers']} | Income: {state['income']}")
+    action = ask_action("Choose", MAIN_MENU)
+    handler= HANDLERS[action]
+    state, reason = handler(state)
+    if reason == "quit":
+        break
+say_line("goodbye")
 
 
-    raw = (input("Play again? (y/n:) "))
-    clean = raw.strip().lower()
-    play_again = RESPONSES.get(clean, False)
 
-if play_again == False:
-    say_line ("goodbye")
+
