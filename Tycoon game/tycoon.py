@@ -108,11 +108,10 @@ class Gamestate:
         total_cost = worker["cost"] * buy_amount
         if total_cost > self.money:
             say_line("too_poor")
-            get_input("Press enter to cotinue...", allow_default = "")
-            return
+            return False
         worker["count"] += buy_amount
         self.money -= total_cost
-        get_input("Press enter to continue...", allow_default = "")
+        return True
     
 def display_game_status(game_state: Gamestate, verbose = False):
     stats = game_state.get_stats()
@@ -148,6 +147,8 @@ def ask_action(prompt, menu_options = MAIN_MENU):
           choices = menu_options
      ).ask()
     return result
+def pause():
+    input("Press Enter to continue...")
 
 
 game = Gamestate()
@@ -160,7 +161,8 @@ while True:
         clear_screen()
         worker_type = ask_action(f"Who do you want to hire? You have $: {game.money}", BUY_MENU)
         amount = get_input("How many?: ", low=1, number_expected=True)
-        game.add_worker(amount, worker_type)
+        success = game.add_worker(amount, worker_type)
+        pause()
 
     elif action == "skip":
         clear_screen()
@@ -171,7 +173,7 @@ while True:
     elif action == "details":
         clear_screen()
         display_game_status(game_state=game, verbose=True)
-        get_input("Press enter to return...", allow_default = "")
+        pause()
 
 
     elif action == "quit":
