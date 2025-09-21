@@ -153,6 +153,7 @@ while True:
         game.add_worker(amount, worker_type)
 
     elif action == "skip":
+        clear_screen()
         skip_amount = get_input("How many turns to skip?: ", low = 1, number_expected = True)
         game.tick(game.get_total_income(), skip_amount)
 
