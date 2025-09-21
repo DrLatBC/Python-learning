@@ -3,10 +3,12 @@ import math
 import questionary
 from questionary import Choice
 from messages import MESSAGES, STUPID_NICKNAMES
+import os
 
 MAIN_MENU = [
      Choice("[1] Buy worker", value = "buy_workers"),
      Choice("[2] Skip turn", value = "skip"),
+     Choice("[3] View Details", value = "details"),
      Choice("Quit", value = "quit")
 ]
 BUY_MENU = [
@@ -96,7 +98,7 @@ class Gamestate:
         self.money += income * turns_used
         self.turn += turns_used
         
-    def display (self):
+    def display_small (self):
          print(f"$: {self.money}, Turn: {self.turn} Income: {self.get_total_income()}")
 
     def add_worker(self, buy_amount, worker_type):
@@ -107,7 +109,13 @@ class Gamestate:
             return
         worker["count"] += buy_amount
         self.money -= total_cost
-                      
+    def display_detailed(self):
+        print("=== Worker Breakdown === ")
+        for name, data in self.workers.items():
+            print(f"| {name + ':':<20}{data['count']} | Income: {data['income']} |")
+    
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def ask_action(prompt, menu_options = MAIN_MENU):
     result = questionary.select(
@@ -120,7 +128,8 @@ def ask_action(prompt, menu_options = MAIN_MENU):
 game = Gamestate()
 
 while True:
-    game.display()
+    clear_screen()
+    game.display_small()
     action = ask_action("What now?", MAIN_MENU)
     if action == "buy_workers":
         worker_type = ask_action("Who do you want to hire?", BUY_MENU)
@@ -130,6 +139,12 @@ while True:
     elif action == "skip":
         skip_amount = get_input("How many turns to skip?: ", low = 1, number_expected = True)
         game.tick(game.get_total_income(), skip_amount)
+
+    elif action == "details":
+        clear_screen()
+        game.display_detailed()
+        get_input("Press enter to return...", allow_default = "")
+
 
     elif action == "quit":
         say_line("goodbye")
