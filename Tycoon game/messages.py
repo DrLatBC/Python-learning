@@ -72,7 +72,19 @@ MESSAGES = {
     "Not enough money, {nick}. This isn't a charity.",
     "Keep dreaming, {nick}—your wallet's empty.",
     "You can't afford that, {nick}. Maybe try begging?",
-]
+    ],
+    "hire_success": [
+    "Nice pickup, {nick}. They're already asking for a raise.",
+    "Congrats, {nick}. You hired someone barely smarter than you.",
+    "That one's gonna carry you—for now.",
+    "Look at you building an empire, {nick}. One corporate drone at a time.",
+    ],
+    "hire_fail": [
+    "Can't hire dreams, {nick}. You need money.",
+    "What did you think would happen, {nick}? No funds, no worker.",
+    "Try paying in exposure next time, {nick}.",
+    "They laughed in your face, {nick}. You can't afford them.",
+],
 }
 STUPID_NICKNAMES = [
     "bro",

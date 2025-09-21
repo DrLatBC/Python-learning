@@ -162,6 +162,10 @@ while True:
         worker_type = ask_action(f"Who do you want to hire? You have $: {game.money}", BUY_MENU)
         amount = get_input("How many?: ", low=1, number_expected=True)
         success = game.add_worker(amount, worker_type)
+        if success:
+            say_line("hire_success")
+        else:
+            say_line("hire_fail")
         pause()
 
     elif action == "skip":
@@ -169,6 +173,7 @@ while True:
         skip_amount = get_input("How many turns to skip?: ", low = 1, number_expected = True)
         stats = game.get_stats()
         game.tick(stats["income"], skip_amount)
+        pause()
 
     elif action == "details":
         clear_screen()
