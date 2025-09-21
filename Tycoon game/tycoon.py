@@ -93,27 +93,40 @@ class Gamestate:
         for worker in self.workers.values():
              income += worker["count"] * worker["income"]
         return income
-    
     def tick(self, income, turns_used):
         self.money += income * turns_used
         self.turn += turns_used
-        
     def display_small (self):
          print(f"$: {self.money}, Turn: {self.turn} Income: {self.get_total_income()}")
-
     def add_worker(self, buy_amount, worker_type):
         worker = self.workers[worker_type]
         total_cost = worker["cost"] * buy_amount
         if total_cost > self.money:
             say_line("too_poor")
+            get_input("Press enter to cotinue...", allow_default = "")
             return
         worker["count"] += buy_amount
         self.money -= total_cost
+        get_input("Press enter to continue...", allow_default = "")
     def display_detailed(self):
-        print("=== Worker Breakdown === ")
+        max_name_len = max(len(f"{name}:") for name in self.workers)
+        col_width = max_name_len + 1
+        total_worker = sum(data["count"] for data in self.workers.values())
+        income = self.get_total_income()
+        table_width = 55
+        header = "=== Worker Breakdown ==="
+        print(header.center(table_width))
+        print("-" * 55)
         for name, data in self.workers.items():
-            print(f"| {name + ':':<20}{data['count']} | Income: {data['income']} |")
-    
+            label = f"{name}:"
+            print(f"| {label:<{max_name_len}} {data['count']:<8,} | Income Per: {data['income']:<8,} |")
+        print("-" * 55)
+        print(f"| {'Total workers:':<{col_width}} {total_worker:<15,} {'':<15}|")
+        print(f"| {'Total income:':<{col_width}} {income:<15,} {'':<15}|")
+        print(f"| {'Turn:':<{col_width}} {self.turn:<15,} {'':<15}|")
+        print(f"| {'Bank:':<{col_width}} {self.money:<15,} {'':<15}|")
+        print("-" * 55)
+
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
