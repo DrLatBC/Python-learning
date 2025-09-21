@@ -182,6 +182,7 @@ while True:
 
 
     elif action == "quit":
+        clear_screen()
         say_line("goodbye")
         break
 
