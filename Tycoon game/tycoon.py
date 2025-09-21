@@ -96,8 +96,6 @@ class Gamestate:
     def tick(self, income, turns_used):
         self.money += income * turns_used
         self.turn += turns_used
-    def display_small (self):
-         print(f"$: {self.money}, Turn: {self.turn} Income: {self.get_total_income()}")
     def add_worker(self, buy_amount, worker_type):
         worker = self.workers[worker_type]
         total_cost = worker["cost"] * buy_amount
@@ -108,24 +106,28 @@ class Gamestate:
         worker["count"] += buy_amount
         self.money -= total_cost
         get_input("Press enter to continue...", allow_default = "")
-    def display_detailed(self):
-        max_name_len = max(len(f"{name}:") for name in self.workers)
+    
+def display_game_status(game_state: Gamestate, verbose = False):
+    if verbose:
+        max_name_len = max(len(f"{name}:") for name in game_state.workers)
         col_width = max_name_len + 1
-        total_worker = sum(data["count"] for data in self.workers.values())
-        income = self.get_total_income()
+        total_worker = sum(data["count"] for data in game_state.workers.values())
+        income = game_state.get_total_income()
         table_width = 55
         header = "=== Worker Breakdown ==="
         print(header.center(table_width))
         print("-" * 55)
-        for name, data in self.workers.items():
+        for name, data in game_state.workers.items():
             label = f"{name}:"
             print(f"| {label:<{max_name_len}} {data['count']:<8,} | Income Per: {data['income']:<8,} |")
         print("-" * 55)
         print(f"| {'Total workers:':<{col_width}} {total_worker:<15,} {'':<15}|")
         print(f"| {'Total income:':<{col_width}} {income:<15,} {'':<15}|")
-        print(f"| {'Turn:':<{col_width}} {self.turn:<15,} {'':<15}|")
-        print(f"| {'Bank:':<{col_width}} {self.money:<15,} {'':<15}|")
+        print(f"| {'Turn:':<{col_width}} {game_state.turn:<15,} {'':<15}|")
+        print(f"| {'Bank:':<{col_width}} {game_state.money:<15,} {'':<15}|")
         print("-" * 55)
+    else:
+        print(f"$: {game_state.money}, Turn: {game_state.turn} Income: {game_state.get_total_income()}")
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -142,9 +144,10 @@ game = Gamestate()
 
 while True:
     clear_screen()
-    game.display_small()
+    display_game_status(game_state=game, verbose=False)
     action = ask_action("What now?", MAIN_MENU)
     if action == "buy_workers":
+        clear_screen()
         worker_type = ask_action("Who do you want to hire?", BUY_MENU)
         amount = get_input("How many?: ", low=1, number_expected=True)
         game.add_worker(amount, worker_type)
@@ -155,7 +158,7 @@ while True:
 
     elif action == "details":
         clear_screen()
-        game.display_detailed()
+        display_game_status(game_state=game, verbose=True)
         get_input("Press enter to return...", allow_default = "")
 
 

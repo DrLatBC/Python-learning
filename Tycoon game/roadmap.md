@@ -20,7 +20,7 @@ FEATURES.md – Clean Roadmap & Progress Tracker
 #### 📊 Display & Stats
 
 * [x] `display_small()` – money, turn, income
-* [ ] `display_detailed()` – worker breakdown
+* [x] `display_detailed()` – worker breakdown
 * [ ] UI polish for all screens
 * [ ] View stats from main menu
 * [ ] Achievement screen (locked/unlocked)
