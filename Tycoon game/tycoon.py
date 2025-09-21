@@ -88,11 +88,18 @@ class Gamestate:
                "Agile Coach": {"count": 0, "income": 40, "cost": 40},
                "Automated Slackbot": {"count": 0, "income": 50, "cost": 50},
           }
-    def get_total_income(self):
-        income = 0
+    def get_stats(self):
+        total_income = 0
+        total_workers = 0
         for worker in self.workers.values():
-             income += worker["count"] * worker["income"]
-        return income
+            total_income += worker["count"] * worker["income"]
+            total_workers += worker["count"]
+        return {
+            "income": total_income,
+            "workers": total_workers,
+            "money": self.money,
+            "turn": self.turn
+        }
     def tick(self, income, turns_used):
         self.money += income * turns_used
         self.turn += turns_used
@@ -108,11 +115,14 @@ class Gamestate:
         get_input("Press enter to continue...", allow_default = "")
     
 def display_game_status(game_state: Gamestate, verbose = False):
+    stats = game_state.get_stats()
+    income = stats["income"]
+    total_workers = stats["workers"]
+    turn = stats["turn"]
+    money = stats["money"]
     if verbose:
         max_name_len = max(len(f"{name}:") for name in game_state.workers)
         col_width = max_name_len + 1
-        total_worker = sum(data["count"] for data in game_state.workers.values())
-        income = game_state.get_total_income()
         table_width = 55
         header = "=== Worker Breakdown ==="
         print(header.center(table_width))
@@ -121,13 +131,13 @@ def display_game_status(game_state: Gamestate, verbose = False):
             label = f"{name}:"
             print(f"| {label:<{max_name_len}} {data['count']:<8,} | Income Per: {data['income']:<8,} |")
         print("-" * 55)
-        print(f"| {'Total workers:':<{col_width}} {total_worker:<15,} {'':<15}|")
+        print(f"| {'Total workers:':<{col_width}} {total_workers:<15,} {'':<15}|")
         print(f"| {'Total income:':<{col_width}} {income:<15,} {'':<15}|")
-        print(f"| {'Turn:':<{col_width}} {game_state.turn:<15,} {'':<15}|")
-        print(f"| {'Bank:':<{col_width}} {game_state.money:<15,} {'':<15}|")
+        print(f"| {'Turn:':<{col_width}} {turn:<15,} {'':<15}|")
+        print(f"| {'Bank:':<{col_width}} {money:<15,} {'':<15}|")
         print("-" * 55)
     else:
-        print(f"$: {game_state.money}, Turn: {game_state.turn} Income: {game_state.get_total_income()}")
+        print(f"$: {money}, Turn: {turn} Income: {income}")
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -155,7 +165,8 @@ while True:
     elif action == "skip":
         clear_screen()
         skip_amount = get_input("How many turns to skip?: ", low = 1, number_expected = True)
-        game.tick(game.get_total_income(), skip_amount)
+        stats = game.get_stats()
+        game.tick(stats["income"], skip_amount)
 
     elif action == "details":
         clear_screen()
