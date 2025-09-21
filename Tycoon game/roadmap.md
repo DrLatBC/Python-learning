@@ -71,13 +71,3 @@ FEATURES.md – Clean Roadmap & Progress Tracker
 * [ ] Unlockable worker types
 * [ ] Sound/ASCII effects (optional)
 * [ ] Future plans: GUI wrapper (tkinter, PySimpleGUI?)
-
----
-
-This version ensures:
-
-* Systems are built before being viewed.
-* No weird forward references to stuff that doesn’t exist yet.
-* Easy visual structure for planning and GitHub tracking.
-
-Want me to regenerate a downloadable `.md` file based on this clean structure?
