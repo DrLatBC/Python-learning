@@ -148,7 +148,7 @@ while True:
     action = ask_action("What now?", MAIN_MENU)
     if action == "buy_workers":
         clear_screen()
-        worker_type = ask_action("Who do you want to hire?", BUY_MENU)
+        worker_type = ask_action(f"Who do you want to hire? You have $: {game.money}", BUY_MENU)
         amount = get_input("How many?: ", low=1, number_expected=True)
         game.add_worker(amount, worker_type)
 
