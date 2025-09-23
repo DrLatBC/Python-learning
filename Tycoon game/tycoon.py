@@ -107,7 +107,6 @@ class Gamestate:
         worker = self.workers[worker_type]
         total_cost = worker["cost"] * buy_amount
         if total_cost > self.money:
-            say_line("too_poor")
             return False
         worker["count"] += buy_amount
         self.money -= total_cost
