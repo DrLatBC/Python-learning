@@ -8,7 +8,8 @@ import os
 MAIN_MENU = [
      Choice("[1] Buy worker", value = "buy_workers"),
      Choice("[2] Skip turn", value = "skip"),
-     Choice("[3] View Details", value = "details"),
+     Choice("[3] View Income Details", value = "details"),
+     Choice("[4] Stats", value = "stats"),
      Choice("Quit", value = "quit")
 ]
 BUY_MENU = [
@@ -81,6 +82,8 @@ class Gamestate:
     def __init__(self):
           self.money = 10
           self.turn = 0
+          self.total_earned = 0
+          self.total_spent = 0
           self.workers = {
                "Intern": {"count": 0, "income": 10, "cost": 10},
                "Junior Dev": {"count": 0, "income": 20, "cost": 20},
@@ -88,20 +91,10 @@ class Gamestate:
                "Agile Coach": {"count": 0, "income": 40, "cost": 40},
                "Automated Slackbot": {"count": 0, "income": 50, "cost": 50},
           }
-    def get_stats(self):
-        total_income = 0
-        total_workers = 0
-        for worker in self.workers.values():
-            total_income += worker["count"] * worker["income"]
-            total_workers += worker["count"]
-        return {
-            "income": total_income,
-            "workers": total_workers,
-            "money": self.money,
-            "turn": self.turn
-        }
     def tick(self, income, turns_used):
-        self.money += income * turns_used
+        temp_income = income * turns_used
+        self.total_earned += temp_income
+        self.money += temp_income  
         self.turn += turns_used
     def add_worker(self, buy_amount, worker_type):
         worker = self.workers[worker_type]
@@ -109,9 +102,18 @@ class Gamestate:
         if total_cost > self.money:
             return False
         worker["count"] += buy_amount
+        self.total_spent += total_cost
         self.money -= total_cost
         return True
-    
+    def get_stats(self):
+        return {
+            "income": sum(w["count"] * w["income"] for w in self.workers.values()),
+            "workers": sum(w["count"] for w in self.workers.values()),
+            "money": self.money,
+            "turn": self.turn,
+            "total_earned": self.total_earned,
+            "total_spent": self.total_spent
+        }
 def display_game_status(game_state: Gamestate, verbose = False):
     stats = game_state.get_stats()
     income = stats["income"]
