@@ -8,7 +8,7 @@ import os
 MAIN_MENU = [
      Choice("[1] Buy worker", value = "buy_workers"),
      Choice("[2] Skip turn", value = "skip"),     
-     Choice("[3] Skip turn", value = "upgrade"),
+     Choice("[3] Upgrade", value = "upgrade"),
      Choice("[4] View Income Details", value = "details"),
      Choice("[5] Stats", value = "stats"),
      Choice("Quit", value = "quit")
@@ -19,6 +19,14 @@ BUY_MENU = [
     Choice("[3] Middle Manager. Income: 30 | Cost: 30", value = "Middle Manager"),
     Choice("[4] Agile Coach. Income: 40 | Cost = 40", value = "Agile Coach"),
     Choice("[5] Automated Slackbot. Income: 50 | Cost = 50", value = "Automated Slackbot"),
+]
+
+UPGRADE_MENU = [
+    Choice("Intern", value="Intern"),
+    Choice("Junior Dev", value="Junior Dev"),
+    Choice("Middle Manager", value="Middle Manager"),
+    Choice("Agile Coach", value="Agile Coach"),
+    Choice("Automated Slackbot", value="Automated Slackbot"),
 ]
 
 RESPONSES = {
@@ -48,11 +56,14 @@ DIFFICULTY_ALIASES = {
 
 message_ix = {reason: 0 for reason in MESSAGES}
 
-def say_line(reason, **ctx):
+def say_line(reason, pause_after = False,**ctx):
     i = message_ix[reason] % len(MESSAGES[reason])
     template = MESSAGES[reason][i]
     print(template.format(nick=random.choice(STUPID_NICKNAMES), **ctx))
     message_ix[reason] += 1
+    
+    if pause_after:
+        input("Press Enter to contine")
 
 def get_input(prompt, low = 1, high = None, allow_default = None, allow_preset = False, number_expected = False):
     while True:
@@ -86,11 +97,11 @@ class Gamestate:
           self.total_earned = 0
           self.total_spent = 0
           self.workers = {
-               "Intern": {"count": 0, "income": 10, "cost": 10, "upgraded": False, "upgraded_cost": 100},
-               "Junior Dev": {"count": 0, "income": 20, "cost": 20, "upgraded": False, "upgraded_cost": 500},
-               "Middle Manager": {"count": 0, "income": 30, "cost": 30, "upgraded": False, "upgraded_cost": 1000},
-               "Agile Coach": {"count": 0, "income": 40, "cost": 40, "upgraded": False, "upgraded_cost": 2000},
-               "Automated Slackbot": {"count": 0, "income": 50, "cost": 50, "upgraded": False, "upgraded_cost": 4000},
+               "Intern": {"count": 0, "income": 10, "cost": 10, "upgraded": False, "upgrade_cost": 100},
+               "Junior Dev": {"count": 0, "income": 20, "cost": 20, "upgraded": False, "upgrade_cost": 500},
+               "Middle Manager": {"count": 0, "income": 30, "cost": 30, "upgraded": False, "upgrade_cost": 1000},
+               "Agile Coach": {"count": 0, "income": 40, "cost": 40, "upgraded": False, "upgrade_cost": 2000},
+               "Automated Slackbot": {"count": 0, "income": 50, "cost": 50, "upgraded": False, "upgrade_cost": 4000},
           }
 
     def tick(self, income, turns_used):
@@ -196,10 +207,23 @@ while True:
         amount = get_input("How many?: ", low=1, number_expected=True)
         success = game.add_worker(amount, worker_type)
         if success:
-            say_line("hire_success")
+            say_line("hire_success", pause_after = True)
         else:
-            say_line("hire_fail")
-        pause()
+            say_line("hire_fail", pause_after = True)
+
+    elif action == "upgrade":
+        clear_screen()
+        worker_type = ask_action("Which worker do you want to upgrade?", UPGRADE_MENU)
+        result = game.upgrade_worker(worker_type)
+
+        if result == "success":
+            say_line("upgrade_success", pause_after = True)
+
+        if result == "too_poor":
+            say_line("too poor", pause_after = True)
+
+        if result == "already_upgraded":
+            say_line("already_upgraded", pause_after = True)
 
     elif action == "skip":
         clear_screen()

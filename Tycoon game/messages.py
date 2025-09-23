@@ -85,6 +85,19 @@ MESSAGES = {
     "Try paying in exposure next time, {nick}.",
     "They laughed in your face, {nick}. You can't afford them.",
 ],
+    "upgrade_success": [
+    "Look at you, {nick}, climbing the corporate ladder.",
+    "Upgraded. That’s some elite business intuition, {nick}.",
+    "They work harder now — fear is a great motivator, {nick}.",
+    "Welcome to capitalism, {nick}. Now they make more for the same pay.",
+],
+    "already_upgraded": [
+    "That worker’s already juiced, {nick}. Leave it alone.",
+    "You can’t double-dip upgrades, {nick}.",
+    "Nice try, {nick}, but we already gave them the Red Bull.",
+    "They’re maxed out, {nick}. You’re just being greedy now.",
+],
+
 }
 STUPID_NICKNAMES = [
     "bro",
