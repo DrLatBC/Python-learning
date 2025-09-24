@@ -1,0 +1,394 @@
+{
+  "home_team": {
+    "name": "What You Talking 'Bout",
+    "record": "4-2-0, 2nd in Mole Slips Division",
+    "manager": "tyler pesce",
+    "score": null,
+    "starters": [
+      {
+        "slot": "QB",
+        "player": {
+          "name": "Dak Prescott",
+          "team": "Dal",
+          "position": "QB",
+          "opponent": "@NYG",
+          "proj": 20.3,
+          "fpts": 27.64
+        }
+      },
+      {
+        "slot": "RB",
+        "player": {
+          "name": "Jonathan Taylor",
+          "team": "Ind",
+          "position": "RB",
+          "opponent": "@Den",
+          "proj": 16.4,
+          "fpts": 31.5
+        }
+      },
+      {
+        "slot": "RB",
+        "player": {
+          "name": "Travis Etienne Jr.",
+          "team": "Jax",
+          "position": "RB",
+          "opponent": "@Cin",
+          "proj": 14.0,
+          "fpts": 16.9
+        }
+      },
+      {
+        "slot": "WR",
+        "player": {
+          "name": "Amon-Ra St. Brown",
+          "team": "Det",
+          "position": "WR",
+          "opponent": "@Chi",
+          "proj": 17.5,
+          "fpts": 41.2
+        }
+      },
+      {
+        "slot": "WR",
+        "player": {
+          "name": "Davante Adams",
+          "team": "LAR",
+          "position": "WR",
+          "opponent": "@Ten",
+          "proj": 15.7,
+          "fpts": 24.6
+        }
+      },
+      {
+        "slot": "TE",
+        "player": {
+          "name": "Evan Engram",
+          "team": "Den",
+          "position": "TE",
+          "opponent": "@Ind",
+          "proj": 9.0,
+          "fpts": 2.2
+        }
+      },
+      {
+        "slot": "FLEX",
+        "player": {
+          "name": "Garrett Wilson",
+          "team": "NYJ",
+          "position": "WR",
+          "opponent": "@Buf",
+          "proj": 15.6,
+          "fpts": 9.0
+        }
+      },
+      {
+        "slot": "D/ST",
+        "player": {
+          "name": "Packers D/ST",
+          "team": "GB",
+          "position": "D/ST",
+          "opponent": "@Wsh",
+          "proj": 5.5,
+          "fpts": 6.0
+        }
+      },
+      {
+        "slot": "K",
+        "player": {
+          "name": "Daniel Carlson",
+          "team": "LV",
+          "position": "K",
+          "opponent": "@LAC",
+          "proj": 7.5,
+          "fpts": 12.0
+        }
+      }
+    ],
+    "bench": [
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "Jaylen Waddle",
+          "team": "Mia",
+          "position": "WR",
+          "opponent": "@NE",
+          "proj": 13.7,
+          "fpts": 17.8
+        }
+      },
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "Michael Pittman Jr.",
+          "team": "Ind",
+          "position": "WR",
+          "opponent": "@Den",
+          "proj": 12.0,
+          "fpts": 8.0
+        }
+      },
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "Tyrone Tracy Jr.",
+          "team": "NYG",
+          "position": "RB",
+          "opponent": "@Dal",
+          "proj": 14.7,
+          "fpts": 9.1
+        }
+      },
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "Jerome Ford",
+          "team": "Cle",
+          "position": "RB",
+          "opponent": "@Bal",
+          "proj": 6.1,
+          "fpts": 10.4
+        }
+      },
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "Zach Charbonnet",
+          "team": "Sea",
+          "position": "RB",
+          "opponent": "@Pit",
+          "proj": 10.5,
+          "fpts": 1.0
+        }
+      },
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "Kendre Miller",
+          "team": "NO",
+          "position": "RB",
+          "opponent": "@SF",
+          "proj": 4.6,
+          "fpts": 2.0
+        }
+      },
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "Aaron Rodgers",
+          "team": "Pit",
+          "position": "QB",
+          "opponent": "@Sea",
+          "proj": 17.0,
+          "fpts": 10.92
+        }
+      }
+    ],
+    "ir": [
+      {
+        "slot": "IR",
+        "player": {}
+      }
+    ],
+    "totals": {
+      "proj": 121.5,
+      "fpts": 171.04
+    }
+  },
+  "away_team": {
+    "name": "Tyleik Deez Nuts",
+    "record": "3-3-0, 3rd in Simps4Nieve Division",
+    "manager": "Alex Capriotti",
+    "score": null,
+    "starters": [
+      {
+        "slot": "QB",
+        "player": {
+          "name": "Lamar Jackson",
+          "team": "Bal",
+          "position": "QB",
+          "opponent": "@Cle",
+          "proj": 26.7,
+          "fpts": 32.8
+        }
+      },
+      {
+        "slot": "RB",
+        "player": {
+          "name": "Jahmyr Gibbs",
+          "team": "Det",
+          "position": "RB",
+          "opponent": "@Chi",
+          "proj": 18.6,
+          "fpts": 19.4
+        }
+      },
+      {
+        "slot": "RB",
+        "player": {
+          "name": "Chase Brown",
+          "team": "Cin",
+          "position": "RB",
+          "opponent": "@Jax",
+          "proj": 18.6,
+          "fpts": 8.5
+        }
+      },
+      {
+        "slot": "WR",
+        "player": {
+          "name": "Jameson Williams",
+          "team": "Det",
+          "position": "WR",
+          "opponent": "@Chi",
+          "proj": 13.4,
+          "fpts": 21.8
+        }
+      },
+      {
+        "slot": "WR",
+        "player": {
+          "name": "Matthew Golden",
+          "team": "GB",
+          "position": "WR",
+          "opponent": "@Wsh",
+          "proj": 11.0,
+          "fpts": 1.5
+        }
+      },
+      {
+        "slot": "TE",
+        "player": {
+          "name": "Chig Okonkwo",
+          "team": "Ten",
+          "position": "TE",
+          "opponent": "@LAR",
+          "proj": 8.8,
+          "fpts": 7.5
+        }
+      },
+      {
+        "slot": "FLEX",
+        "player": {
+          "name": "Tony Pollard",
+          "team": "Ten",
+          "position": "RB",
+          "opponent": "@LAR",
+          "proj": 15.0,
+          "fpts": 9.2
+        }
+      },
+      {
+        "slot": "D/ST",
+        "player": {
+          "name": "Lions D/ST",
+          "team": "Det",
+          "position": "D/ST",
+          "opponent": "@Chi",
+          "proj": 6.0,
+          "fpts": 8.0
+        }
+      },
+      {
+        "slot": "K",
+        "player": {
+          "name": "Jake Bates",
+          "team": "Det",
+          "position": "K",
+          "opponent": "@Chi",
+          "proj": 8.4,
+          "fpts": 9.0
+        }
+      }
+    ],
+    "bench": [
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "DJ Moore",
+          "team": "Chi",
+          "position": "@Det",
+          "opponent": "@Wsh",
+          "proj": 14.3,
+          "fpts": 9.6
+        }
+      },
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "Jordan Mason",
+          "team": "Min",
+          "position": "RB",
+          "opponent": "@Atl",
+          "proj": 12.2,
+          "fpts": 5.8
+        }
+      },
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "Keon Coleman",
+          "team": "Buf",
+          "position": "WR",
+          "opponent": "@NYJ",
+          "proj": 12.9,
+          "fpts": 5.6
+        }
+      },
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "Dallas Goedert",
+          "team": "Phi",
+          "position": "TE",
+          "opponent": "@KC",
+          "proj": 0,
+          "fpts": 0
+        }
+      },
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "Isaac TeSlaa",
+          "team": "Det",
+          "position": "WR",
+          "opponent": "@Chi",
+          "proj": 3.4,
+          "fpts": 3.9
+        }
+      },
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "Sam Darnold",
+          "team": "Sea",
+          "position": "QB",
+          "opponent": "@Pit",
+          "proj": 14.4,
+          "fpts": 18.8
+        }
+      },
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "Josh Reynolds",
+          "team": "NYJ",
+          "position": "WR",
+          "opponent": "@Buf",
+          "proj": 0,
+          "fpts": 0
+        }
+      }
+    ],
+    "ir": [
+      {
+        "slot": "IR",
+        "player": {}
+      }
+    ],
+    "totals": {
+      "proj": 126.5,
+      "fpts": 117.7
+    }
+  }
+}

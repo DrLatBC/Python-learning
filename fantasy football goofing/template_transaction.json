@@ -1,0 +1,62 @@
+{
+  "transactions": {
+    "waivers": [
+      {
+        "date": "",
+        "team": "",
+        "adds": [
+          { "name": "", "team": "", "position": "" }
+        ],
+        "drops": [
+          { "name": "", "team": "", "position": "" }
+        ],
+        "bid": null,
+        "priority_before": null,
+        "priority_after": null,
+        "notes": ""
+      }
+    ],
+    "free_agents": [
+      {
+        "date": "",
+        "team": "",
+        "adds": [
+          { "name": "", "team": "", "position": "" }
+        ],
+        "drops": [
+          { "name": "", "team": "", "position": "" }
+        ],
+        "notes": ""
+      }
+    ],
+    "trades": [
+      {
+        "date": "",
+        "teams": ["", ""],
+        "team_a": {
+          "name": "",
+          "players_in": [
+            { "name": "", "team": "", "position": "" }
+          ],
+          "players_out": [
+            { "name": "", "team": "", "position": "" }
+          ],
+          "picks_in": [],
+          "picks_out": []
+        },
+        "team_b": {
+          "name": "",
+          "players_in": [
+            { "name": "", "team": "", "position": "" }
+          ],
+          "players_out": [
+            { "name": "", "team": "", "position": "" }
+          ],
+          "picks_in": [],
+          "picks_out": []
+        },
+        "notes": ""
+      }
+    ]
+  }
+}

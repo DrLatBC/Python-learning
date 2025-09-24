@@ -4,6 +4,8 @@ import questionary
 from questionary import Choice
 from messages import MESSAGES, STUPID_NICKNAMES
 import os
+import time
+import threading
 
 MAIN_MENU = [
      Choice("[1] Buy worker", value = "buy_workers"),
@@ -63,7 +65,7 @@ def say_line(reason, pause_after = False,**ctx):
     message_ix[reason] += 1
     
     if pause_after:
-        input("Press Enter to contine")
+        input("Press Enter to continue")
 
 def get_input(prompt, low = 1, high = None, allow_default = None, allow_preset = False, number_expected = False):
     while True:
@@ -194,8 +196,17 @@ def ask_action(prompt, menu_options = MAIN_MENU):
 def pause():
     input("Press Enter to continue...")
 
+def passive_loop():
+    while game_is_running:
+        income = game.get_stats()["income"]
+        game.tick(income, 1)
+        time.sleep(5)
 
 game = Gamestate()
+game_is_running = True 
+
+passive_thread = threading.Thread(target=passive_loop, daemon=True)
+passive_thread.start()
 
 while True:
     clear_screen()
@@ -220,7 +231,7 @@ while True:
             say_line("upgrade_success", pause_after = True)
 
         if result == "too_poor":
-            say_line("too poor", pause_after = True)
+            say_line("too_poor", pause_after = True)
 
         if result == "already_upgraded":
             say_line("already_upgraded", pause_after = True)

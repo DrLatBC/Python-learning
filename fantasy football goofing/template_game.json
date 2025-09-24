@@ -1,0 +1,64 @@
+{
+  "home_team": {
+    "name": "",
+    "record": "",
+    "manager": "",
+    "score": null,
+    "starters": [
+      {
+        "slot": "QB",
+        "player": {
+          "name": "",
+          "team": "",
+          "position": "",
+          "opponent": "",
+          "proj": null,
+          "fpts": null
+        }
+      }
+    ],
+    "bench": [
+      {
+        "slot": "BENCH",
+        "player": {
+          "name": "",
+          "team": "",
+          "position": "",
+          "opponent": "",
+          "proj": null,
+          "fpts": null
+        }
+      }
+    ],
+    "ir": [
+      {
+        "slot": "IR",
+        "player": {
+          "name": "",
+          "team": "",
+          "position": "",
+          "opponent": "",
+          "proj": null,
+          "fpts": null
+        }
+      }
+    ],
+    "totals": {
+      "proj": null,
+      "fpts": null
+    }
+  },
+  "away_team": {
+    "name": "",
+    "record": "",
+    "manager": "",
+    "score": null,
+    "starters": [],
+    "bench": [],
+    "ir": [],
+    "totals": {
+      "proj": null,
+      "fpts": null
+    }
+  }
+}
