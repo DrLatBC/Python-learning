@@ -1,12 +1,10 @@
 {
-  "home_team": {
+  "team_a": {
     "name": "",
     "record": "",
-    "manager": "",
-    "score": null,
     "starters": [
       {
-        "slot": "QB",
+        "slot": "",
         "player": {
           "name": "",
           "team": "",
@@ -19,7 +17,7 @@
     ],
     "bench": [
       {
-        "slot": "BENCH",
+        "slot": "",
         "player": {
           "name": "",
           "team": "",
@@ -32,7 +30,7 @@
     ],
     "ir": [
       {
-        "slot": "IR",
+        "slot": "",
         "player": {
           "name": "",
           "team": "",
@@ -48,11 +46,11 @@
       "fpts": null
     }
   },
-  "away_team": {
+  "team_b": {
     "name": "",
     "record": "",
-    "manager": "",
-    "score": null,
+    "division": "",
+    "rank": "",
     "starters": [],
     "bench": [],
     "ir": [],
