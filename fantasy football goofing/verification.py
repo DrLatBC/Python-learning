@@ -1,27 +1,42 @@
-def verify_game(game: dict, game_id: str, verbose=False):
+import sys, json
+
+def norm_str(x):
+    return x.strip() if isinstance(x, str) else ""
+
+def r2(x):
+    try:
+        return round(float(x), 2)
+    except Exception:
+        return 0.0
+
+def verify_game(game: dict, game_id: str, teams_by_id: dict):
     """
     Abort on:
       - missing team names
       - broken starter row (missing name/team/position)
       - ESPN missing projections: proj == 0 while fpts > 0
       - totals mismatch > ±0.2 (starters and bench)
+      - team_id not matching name/aliases from teams block
     """
     issues = []
 
-    def norm_str(x):
-        return x.strip() if isinstance(x, str) else ""
-
-    def r2(x):
-        try:
-            return round(float(x), 2)
-        except Exception:
-            return 0.0
-
     def chk_team(side_key):
         side = game.get(side_key, {})
+        tid = norm_str(side.get("team_id", ""))
         name = norm_str(side.get("name", ""))
         if not name:
             issues.append(f"{game_id} {side_key}: Missing team name")
+
+        # ✅ Team ID consistency check
+        if tid:
+            if tid not in teams_by_id:
+                issues.append(f"{game_id} {side_key}: Unknown team_id '{tid}'")
+            else:
+                valid_aliases = [norm_str(a) for a in teams_by_id[tid].get("aliases", [])]
+                if name and norm_str(name) not in valid_aliases:
+                    issues.append(
+                        f"{game_id} {side_key}: Team name '{name}' not in aliases for {tid} ({valid_aliases})"
+                    )
 
         starters = side.get("starters", [])
         bench = side.get("bench", [])
@@ -70,14 +85,9 @@ def verify_game(game: dict, game_id: str, verbose=False):
     chk_team("team_a")
     chk_team("team_b")
 
-    if not issues and verbose:
-        print(f"✅ {game_id} verified clean.")
     return issues
 
-
 if __name__ == "__main__":
-    import sys, json
-
     if len(sys.argv) < 2:
         print("Usage: python verification.py <fantasy.json> [--verbose]")
         sys.exit(1)
@@ -90,11 +100,16 @@ if __name__ == "__main__":
 
     all_issues = []
     for year, year_data in data.get("seasons", {}).items():
+        teams_block = year_data.get("teams", [])
+        teams_by_id = {t["team_id"]: t for t in teams_block if "team_id" in t}
+
         for week, week_data in year_data.get("weeks", {}).items():
             for game in week_data.get("games", []):
                 gid = game.get("game_id", f"{year}W{week}G?")
-                issues = verify_game(game, gid, verbose=verbose)
+                issues = verify_game(game, gid, teams_by_id)
                 all_issues.extend(issues)
+                if verbose and not issues:
+                    print(f"✅ {gid} verified clean.")
 
     if all_issues:
         print("❌ Verification FAILED:")

@@ -195,8 +195,7 @@
                   "fpts": 101.34,
                   "bench_proj": 63.4,
                   "bench_fpts": 74.8
-                },
-                "team_id": "T001"
+                }
               },
               "team_b": {
                 "name": "What You Talking 'Bout",
@@ -376,8 +375,7 @@
                   "fpts": 75.32,
                   "bench_proj": 63.7,
                   "bench_fpts": 66.2
-                },
-                "team_id": "T002"
+                }
               }
             },
             {
@@ -571,8 +569,7 @@
                   "fpts": 103.96,
                   "bench_proj": 68.1,
                   "bench_fpts": 61.2
-                },
-                "team_id": "T003"
+                }
               },
               "team_b": {
                 "name": "Crashee Rice",
@@ -775,8 +772,7 @@
                   "fpts": 121.48,
                   "bench_proj": 68.7,
                   "bench_fpts": 41.66
-                },
-                "team_id": "T004"
+                }
               }
             },
             {
@@ -970,8 +966,7 @@
                   "fpts": 109.62,
                   "bench_proj": 66.7,
                   "bench_fpts": 71.1
-                },
-                "team_id": "T005"
+                }
               },
               "team_b": {
                 "name": "Twisted Wulf",
@@ -1162,8 +1157,7 @@
                   "fpts": 76.32,
                   "bench_proj": 89.2,
                   "bench_fpts": 72.48
-                },
-                "team_id": "T006"
+                }
               }
             },
             {
@@ -1357,8 +1351,7 @@
                   "fpts": 126.06,
                   "bench_proj": 75.0,
                   "bench_fpts": 91.72
-                },
-                "team_id": "T007"
+                }
               },
               "team_b": {
                 "name": "Berns",
@@ -1549,8 +1542,7 @@
                   "fpts": 91.52,
                   "bench_proj": 74.5,
                   "bench_fpts": 63.88
-                },
-                "team_id": "T008"
+                }
               }
             },
             {
@@ -1744,8 +1736,7 @@
                   "fpts": 135.52,
                   "bench_proj": 68.8,
                   "bench_fpts": 67.18
-                },
-                "team_id": "T009"
+                }
               },
               "team_b": {
                 "name": "Krios",
@@ -1936,8 +1927,7 @@
                   "fpts": 133.82,
                   "bench_proj": 60.9,
                   "bench_fpts": 44.42
-                },
-                "team_id": "T010"
+                }
               }
             },
             {
@@ -2143,8 +2133,7 @@
                   "fpts": 127.78,
                   "bench_proj": 66.5,
                   "bench_fpts": 29.12
-                },
-                "team_id": "T011"
+                }
               },
               "team_b": {
                 "name": "Slime Time",
@@ -2335,8 +2324,7 @@
                   "fpts": 120.82,
                   "bench_proj": 60.5,
                   "bench_fpts": 56.4
-                },
-                "team_id": "T012"
+                }
               }
             }
           ]
@@ -2534,8 +2522,7 @@
                   "fpts": 109.1,
                   "bench_proj": 71.1,
                   "bench_fpts": 97.8
-                },
-                "team_id": "T008"
+                }
               },
               "team_b": {
                 "name": "Shadowkami",
@@ -2738,8 +2725,7 @@
                   "fpts": 139.7,
                   "bench_proj": 59.4,
                   "bench_fpts": 46.98
-                },
-                "team_id": "T011"
+                }
               }
             },
             {
@@ -2933,8 +2919,7 @@
                   "fpts": 88.98,
                   "bench_proj": 52.3,
                   "bench_fpts": 48.9
-                },
-                "team_id": "T010"
+                }
               },
               "team_b": {
                 "name": "Slime Time",
@@ -3137,8 +3122,7 @@
                   "fpts": 118.98,
                   "bench_proj": 58.1,
                   "bench_fpts": 37.5
-                },
-                "team_id": "T012"
+                }
               }
             },
             {
@@ -3332,8 +3316,7 @@
                   "fpts": 88.0,
                   "bench_proj": 59.4,
                   "bench_fpts": 91.58
-                },
-                "team_id": "T009"
+                }
               },
               "team_b": {
                 "name": "Swiftly Chasing Dat Ass",
@@ -3524,8 +3507,7 @@
                   "fpts": 160.52,
                   "bench_proj": 83.3,
                   "bench_fpts": 86.18
-                },
-                "team_id": "T007"
+                }
               }
             },
             {
@@ -3719,8 +3701,7 @@
                   "fpts": 105.22,
                   "bench_proj": 72.3,
                   "bench_fpts": 81.94
-                },
-                "team_id": "T001"
+                }
               },
               "team_b": {
                 "name": "Twisted Wulf",
@@ -3911,8 +3892,7 @@
                   "fpts": 110.02,
                   "bench_proj": 74.1,
                   "bench_fpts": 82.64
-                },
-                "team_id": "T006"
+                }
               }
             },
             {
@@ -4118,8 +4098,7 @@
                   "fpts": 98.64,
                   "bench_proj": 39.3,
                   "bench_fpts": 53.0
-                },
-                "team_id": "T004"
+                }
               },
               "team_b": {
                 "name": "Jmof",
@@ -4310,8 +4289,7 @@
                   "fpts": 86.54,
                   "bench_proj": 64.9,
                   "bench_fpts": 92.36
-                },
-                "team_id": "T005"
+                }
               }
             },
             {
@@ -4505,8 +4483,7 @@
                   "fpts": 171.04,
                   "bench_proj": 78.6,
                   "bench_fpts": 59.22
-                },
-                "team_id": "T002"
+                }
               },
               "team_b": {
                 "name": "Tyleik Deez Nuts",
@@ -4697,8 +4674,7 @@
                   "fpts": 117.7,
                   "bench_proj": 57.2,
                   "bench_fpts": 43.7
-                },
-                "team_id": "T003"
+                }
               }
             }
           ]
@@ -4896,8 +4872,7 @@
                   "fpts": 129.52,
                   "bench_proj": 64.1,
                   "bench_fpts": 63.28
-                },
-                "team_id": "T006"
+                }
               },
               "team_b": {
                 "name": "What You Talking 'Bout",
@@ -5088,8 +5063,7 @@
                   "fpts": 139.64,
                   "bench_proj": 59.2,
                   "bench_fpts": 60.46
-                },
-                "team_id": "T002"
+                }
               }
             },
             {
@@ -5283,8 +5257,7 @@
                   "fpts": 125.62,
                   "bench_proj": 66.1,
                   "bench_fpts": 69.12
-                },
-                "team_id": "T003"
+                }
               },
               "team_b": {
                 "name": "Jmof",
@@ -5487,8 +5460,7 @@
                   "fpts": 107.08,
                   "bench_proj": 62.2,
                   "bench_fpts": 57.92
-                },
-                "team_id": "T005"
+                }
               }
             },
             {
@@ -5682,8 +5654,7 @@
                   "fpts": 105.44,
                   "bench_proj": 80.2,
                   "bench_fpts": 55.82
-                },
-                "team_id": "T001"
+                }
               },
               "team_b": {
                 "name": "Crashee Rice",
@@ -5886,8 +5857,7 @@
                   "fpts": 125.54,
                   "bench_proj": 44.2,
                   "bench_fpts": 41.32
-                },
-                "team_id": "T004"
+                }
               }
             },
             {
@@ -6081,8 +6051,7 @@
                   "fpts": 113.82,
                   "bench_proj": 84.4,
                   "bench_fpts": 114.2
-                },
-                "team_id": "T007"
+                }
               },
               "team_b": {
                 "name": "Shadowkami",
@@ -6285,8 +6254,7 @@
                   "fpts": 134.02,
                   "bench_proj": 60.9,
                   "bench_fpts": 40.5
-                },
-                "team_id": "T011"
+                }
               }
             },
             {
@@ -6492,8 +6460,7 @@
                   "fpts": 83.08,
                   "bench_proj": 50.0,
                   "bench_fpts": 40.3
-                },
-                "team_id": "T012"
+                }
               },
               "team_b": {
                 "name": "Burrow The Belt",
@@ -6684,8 +6651,7 @@
                   "fpts": 107.86,
                   "bench_proj": 60.5,
                   "bench_fpts": 69.22
-                },
-                "team_id": "T009"
+                }
               }
             },
             {
@@ -6879,8 +6845,7 @@
                   "fpts": 82.26,
                   "bench_proj": 40.4,
                   "bench_fpts": 23.5
-                },
-                "team_id": "T010"
+                }
               },
               "team_b": {
                 "name": "Berns",
@@ -7071,126 +7036,103 @@
                   "fpts": 140.82,
                   "bench_proj": 60.0,
                   "bench_fpts": 79.9
-                },
-                "team_id": "T008"
+                }
               }
             }
           ]
         }
       },
       "divisions": {
-        "T001": "Simps4Nieve",
-        "T002": "Mole Slips",
-        "T003": "Mole Slips",
-        "T004": "Simps4Nieve",
-        "T005": "Mole Slips",
-        "T006": "Simps4Nieve",
-        "T007": "Simps4Nieve",
-        "T008": "Mole Slips",
-        "T009": "Simps4Nieve",
-        "T010": "Mole Slips",
-        "T011": "Simps4Nieve",
-        "T012": "Mole Slips"
+        "Crashee Rice": "Mole Slips",
+        "What You Talking 'Bout": "Mole Slips",
+        "Slime Time": "Mole Slips",
+        "Berns": "Mole Slips",
+        "Krios": "Mole Slips",
+        "Jmof": "Mole Slips",
+        "Shadowkami": "Simps4Nieve",
+        "Swiftly Chasing Dat Ass": "Simps4Nieve",
+        "Tyleik Deez Nuts": "Simps4Nieve",
+        "Burrow The Belt": "Simps4Nieve",
+        "Twisted Wulf": "Simps4Nieve",
+        "Clevelan Steamers": "Simps4Nieve"
       },
       "teams": [
-        {
-          "team_id": "T001",
-          "name": "Clevelan Steamers",
-          "aliases": [
-            "Clevelan Steamers"
-          ],
-          "record": "1-5-0"
-        },
-        {
-          "team_id": "T002",
-          "name": "What You Talking 'Bout",
-          "aliases": [
-            "Mayen Event",
-            "What You Talking 'Bout"
-          ],
-          "record": "4-2-0"
-        },
-        {
-          "team_id": "T003",
-          "name": "Tyleik Deez Nuts",
-          "aliases": [
-            "Tyleik Deez Nuts"
-          ],
-          "record": "3-3-0"
-        },
-        {
-          "team_id": "T004",
-          "name": "Crashee Rice",
-          "aliases": [
-            "Crashee Rice"
-          ],
-          "record": "5-1-0"
-        },
-        {
-          "team_id": "T005",
-          "name": "Jmof",
-          "aliases": [
-            "Jmof"
-          ],
-          "record": "1-5-0"
-        },
-        {
-          "team_id": "T006",
-          "name": "Twisted Wulf",
-          "aliases": [
-            "Twisted Wulf"
-          ],
-          "record": "3-3-0"
-        },
-        {
-          "team_id": "T007",
-          "name": "Swiftly Chasing Dat Ass",
-          "aliases": [
-            "Swiftly Chasing Dat Ass"
-          ],
-          "record": "4-2-0"
-        },
-        {
-          "team_id": "T008",
-          "name": "Berns",
-          "aliases": [
-            "Berns"
-          ],
-          "record": "2-4-0"
-        },
-        {
-          "team_id": "T009",
-          "name": "Burrow The Belt",
-          "aliases": [
-            "Burrow The Belt"
-          ],
-          "record": "3-3-0"
-        },
-        {
-          "team_id": "T010",
-          "name": "Krios",
-          "aliases": [
-            "Krios"
-          ],
-          "record": "1-5-0"
-        },
-        {
-          "team_id": "T011",
-          "name": "Shadowkami",
-          "aliases": [
-            "Shadowkami"
-          ],
-          "record": "6-0-0"
-        },
-        {
-          "team_id": "T012",
-          "name": "Slime Time",
-          "aliases": [
-            "Slime Time"
-          ],
-          "record": "3-3-0"
-        }
-      ]
+  {
+    "team_id": "T001",
+    "name": "Clevelan Steamers",
+    "aliases": ["Clevelan Steamers"],
+    "record": "1-5-0"
+  },
+  {
+    "team_id": "T002",
+    "name": "What You Talking 'Bout",
+    "aliases": ["What You Talking 'Bout"],
+    "record": "4-2-0"
+  },
+  {
+    "team_id": "T003",
+    "name": "Tyleik Deez Nuts",
+    "aliases": ["Tyleik Deez Nuts"],
+    "record": "3-3-0"
+  },
+  {
+    "team_id": "T004",
+    "name": "Crashee Rice",
+    "aliases": ["Crashee Rice"],
+    "record": "5-1-0"
+  },
+  {
+    "team_id": "T005",
+    "name": "Jmof",
+    "aliases": ["Jmof"],
+    "record": "1-5-0"
+  },
+  {
+    "team_id": "T006",
+    "name": "Twisted Wulf",
+    "aliases": ["Twisted Wulf"],
+    "record": "3-3-0"
+  },
+  {
+    "team_id": "T007",
+    "name": "Swiftly Chasing Dat Ass",
+    "aliases": ["Swiftly Chasing Dat Ass"],
+    "record": "4-2-0"
+  },
+  {
+    "team_id": "T008",
+    "name": "Berns",
+    "aliases": ["Berns"],
+    "record": "2-4-0"
+  },
+  {
+    "team_id": "T009",
+    "name": "Burrow The Belt",
+    "aliases": ["Burrow The Belt"],
+    "record": "3-3-0"
+  },
+  {
+    "team_id": "T010",
+    "name": "Krios",
+    "aliases": ["Krios"],
+    "record": "1-5-0"
+  },
+  {
+    "team_id": "T011",
+    "name": "Shadowkami",
+    "aliases": ["Shadowkami"],
+    "record": "6-0-0"
+  },
+  {
+    "team_id": "T012",
+    "name": "Slime Time",
+    "aliases": ["Slime Time"],
+    "record": "3-3-0"
+  }
+]
+
+        
+      
     }
   }
 }
