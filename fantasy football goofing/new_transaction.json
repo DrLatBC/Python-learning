@@ -1,0 +1,171 @@
+{
+  "transactions": [
+    {
+      "date": "09-16",
+      "entries": [
+        {
+          "time": "8:38 am",
+          "type": "drop",
+          "method": "FA",
+          "team_name": "What You Talking 'Bout",
+          "dropped": {
+            "player": "Kendre Miller",
+            "team": "NO",
+            "position": "RB"
+          }
+        }
+      ]
+    },
+    {
+      "date": "09-13",
+      "entries": [
+        {
+          "time": "8:06 pm",
+          "type": "team_update",
+          "team_name": "Burrow The Belt",
+          "old_name": "Bob's Brilliant Team",
+          "new_name": "Burrow The Belt",
+          "old_abbrev": "BBT",
+          "new_abbrev": "BTB"
+        }
+      ]
+    },
+    {
+      "date": "09-12",
+      "entries": [
+        {
+          "time": "12:30 am",
+          "type": "add",
+          "method": "FA",
+          "team_name": "What You Talking 'Bout",
+          "added": {
+            "player": "Aaron Rodgers",
+            "team": "Pit",
+            "position": "QB",
+            "cost": 0
+          }
+        },
+        {
+          "time": "12:30 am",
+          "type": "drop",
+          "method": "FA",
+          "team_name": "What You Talking 'Bout",
+          "dropped": {
+            "player": "Daniel Jones",
+            "team": "Ind",
+            "position": "QB"
+          }
+        },
+        {
+          "time": "12:20 am",
+          "type": "drop",
+          "method": "Waivers",
+          "team_name": "Krios",
+          "dropped": {
+            "player": "Luther Burden III",
+            "team": "Chi",
+            "position": "WR"
+          }
+        },
+        {
+          "time": "12:20 am",
+          "type": "add",
+          "method": "FA",
+          "team_name": "Krios",
+          "added": {
+            "player": "DJ Giddens",
+            "team": "Ind",
+            "position": "RB",
+            "cost": 0
+          }
+        },
+        {
+          "time": "12:18 am",
+          "type": "add",
+          "method": "FA",
+          "team_name": "Crashee Rice",
+          "added": {
+            "player": "Quinshon Judkins",
+            "team": "Cle",
+            "position": "RB",
+            "cost": 0
+          }
+        },
+        {
+          "time": "12:18 am",
+          "type": "drop",
+          "method": "Waivers",
+          "team_name": "Crashee Rice",
+          "dropped": {
+            "player": "Bryce Young",
+            "team": "Car",
+            "position": "QB"
+          }
+        }
+      ]
+    },
+    {
+      "date": "09-11",
+      "entries": [
+        {
+          "time": "5:11 pm",
+          "type": "add",
+          "method": "FA",
+          "team_name": "Slime Time",
+          "added": {
+            "player": "Jonnu Smith",
+            "team": "Pit",
+            "position": "TE",
+            "cost": 0
+          }
+        },
+        {
+          "time": "12:17 pm",
+          "type": "add",
+          "method": "FA",
+          "team_name": "What You Talking 'Bout",
+          "added": {
+            "player": "Packers D/ST",
+            "team": "GB",
+            "position": "D/ST",
+            "cost": 0
+          }
+        },
+        {
+          "time": "12:13 pm",
+          "type": "add",
+          "method": "FA",
+          "team_name": "What You Talking 'Bout",
+          "added": {
+            "player": "Daniel Carlson",
+            "team": "LV",
+            "position": "K",
+            "cost": 0
+          }
+        },
+        {
+          "time": "12:13 pm",
+          "type": "drop",
+          "method": "FA",
+          "team_name": "What You Talking 'Bout",
+          "dropped": {
+            "player": "Matt Gay",
+            "team": "Wsh",
+            "position": "K"
+          }
+        },
+        {
+          "time": "12:13 pm",
+          "type": "drop",
+          "method": "FA",
+          "team_name": "What You Talking 'Bout",
+          "dropped": {
+            "player": "Patriots D/ST",
+            "team": "NE",
+            "position": "D/ST"
+          }
+        }
+      ]
+    }
+  ]
+}

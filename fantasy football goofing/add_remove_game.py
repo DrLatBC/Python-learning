@@ -21,6 +21,56 @@ def save_json(filename, data):
 # --------------------------------------
 DEFAULT_STARTER_SLOTS = ["QB", "RB", "RB", "WR", "WR", "TE", "FLEX", "D/ST", "K"]
 
+def parse_record(record_str):
+    """Return (wins, losses, ties) from a 'W-L-T' string, or (0,0,0)."""
+    try:
+        parts = record_str.split("-")
+        w, l, t = (int(x) for x in (parts + ["0", "0"])[:3])
+        return w, l, t
+    except Exception:
+        return 0, 0, 0
+
+def maybe_update_team_record(data, year, team):
+    """If the ingested record has more games played, update team record in teams list."""
+    seasons = data.get("seasons", {})
+    teams_section = seasons.get(str(year), {}).get("teams", [])
+    tid = team.get("team_id")
+    new_record = team.get("record", "")
+
+    if not tid or not new_record:
+        return
+
+    new_w, new_l, new_t = parse_record(new_record)
+    new_total = new_w + new_l + new_t
+
+    for t in teams_section:
+        if t.get("team_id") == tid:
+            old_w, old_l, old_t = parse_record(t.get("record", ""))
+            old_total = old_w + old_l + old_t
+            if new_total > old_total:
+                t["record"] = new_record
+                print(f"🔄 Updated {t['name']} record: {old_w}-{old_l}-{old_t} → {new_record}")
+            break
+
+def apply_team_update(data, year, update):
+    """
+    Handle team_update transactions: add old name/abbrev to aliases.
+    """
+    year = str(year)
+    aliases = data["seasons"][year].get("team_aliases", [])
+
+    new_name = update.get("new_name")
+    old_name = update.get("old_name")
+    old_abbrev = update.get("old_abbrev")
+
+    for team in aliases:
+        if team.get("name") == new_name:
+            if old_name and old_name not in team.get("aliases", []):
+                team.setdefault("aliases", []).append(old_name)
+            if old_abbrev and old_abbrev not in team.get("aliases", []):
+                team.setdefault("aliases", []).append(old_abbrev)
+            break
+
 def normalize_position(pos_raw):
     pos_raw = norm_str(pos_raw)
     return "D/ST" if pos_raw.replace(" ", "").upper() in {"DST", "D/ST"} else pos_raw.upper()
@@ -128,7 +178,7 @@ def normalize_player_entry(entry):
     entry["player"] = player
     return entry
 
-def normalize_team(team: dict, side: str, game_id: str):
+def normalize_team(team: dict, side: str, game_id: str, alias_to_id: dict):
     # 🔁 Promote box_score fields if present
     if "box_score" in team and isinstance(team["box_score"], dict):
         box = team.pop("box_score")
@@ -142,6 +192,13 @@ def normalize_team(team: dict, side: str, game_id: str):
     # ✅ Normalize shallow fields
     team["name"] = norm_str(team.get("name", ""))
     team["record"] = norm_str(team.get("record", ""))
+
+    # ✅ Assign team_id from aliases
+    name_key = team["name"].strip().lower()
+    team_id = alias_to_id.get(name_key)
+    if not team_id:
+        raise ValueError(f"[{game_id} {side}] Unknown team name '{team['name']}'. Add to team_aliases.")
+    team["team_id"] = team_id
 
     # 🚮 Drop unwanted fields (manager, score, division, rank) but warn only if present & meaningful
     for junk in ("manager", "score", "division", "rank"):
@@ -301,6 +358,20 @@ def add_game(master_file, new_game_file, year, week):
     data = load_json(master_file)
     games = ensure_week_bucket(data, year, week)
 
+    # Build alias → team_id mapping from teams in the given season
+    alias_to_id = {}
+    teams_section = data.get("seasons", {}).get(str(year), {}).get("teams", [])
+    for team in teams_section:
+        tid = team.get("team_id")
+        name = team.get("name", "").strip().lower()
+        if tid and name:
+            alias_to_id[name] = tid
+        for alias in team.get("aliases", []):
+            alias_to_id[alias.strip().lower()] = tid
+
+
+
+
     # Build placeholder ID for normalization context (warnings show this)
     temp_id = f"S{year}W{week}G?"
 
@@ -315,14 +386,16 @@ def add_game(master_file, new_game_file, year, week):
     new_game_data["team_a"].pop("score", None)
     new_game_data["team_b"].pop("score", None)
 
-    team_a, warn_a = normalize_team(new_game_data["team_a"], side="team_a", game_id=temp_id)
-    team_b, warn_b = normalize_team(new_game_data["team_b"], side="team_b", game_id=temp_id)
+    team_a, warn_a = normalize_team(new_game_data["team_a"], side="team_a", game_id=temp_id, alias_to_id=alias_to_id)
+    team_b, warn_b = normalize_team(new_game_data["team_b"], side="team_b", game_id=temp_id, alias_to_id=alias_to_id)
 
     calculate_team_totals(team_a)
     calculate_team_totals(team_b)
 
     warnings = warn_a + warn_b
-
+    maybe_update_team_record(data, year, team_a)
+    maybe_update_team_record(data, year, team_b)
+    
     # Assign final game_id now based on current week size
     game_id = generate_game_id(games, year, week)
     new_game = {"game_id": game_id, "team_a": team_a, "team_b": team_b}
