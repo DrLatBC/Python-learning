@@ -1,0 +1,406 @@
+{
+  "team_a": {
+    "name": "Krios",
+    "record": "1-5-0, 5th in Mole Slips Division",
+    "starters": [
+      {
+        "slot": "QB",
+        "player": {
+          "name": "Patrick Mahomes",
+          "team": "KC",
+          "position": "QB",
+          "opponent": "@NYG",
+          "proj": 23.5,
+          "fpts": 14.16
+        }
+      },
+      {
+        "slot": "RB",
+        "player": {
+          "name": "Saquon Barkley",
+          "team": "Phi",
+          "position": "RB",
+          "opponent": "LAR",
+          "proj": 19.5,
+          "fpts": 9.5
+        }
+      },
+      {
+        "slot": "RB",
+        "player": {
+          "name": "Nick Chubb",
+          "team": "Hou",
+          "position": "RB",
+          "opponent": "@Jax",
+          "proj": 12.4,
+          "fpts": 7.0
+        }
+      },
+      {
+        "slot": "WR",
+        "player": {
+          "name": "Ladd McConkey",
+          "team": "LAC",
+          "position": "WR",
+          "opponent": "Den",
+          "proj": 15.1,
+          "fpts": 8.1
+        }
+      },
+      {
+        "slot": "WR",
+        "player": {
+          "name": "George Pickens",
+          "team": "Dal",
+          "position": "WR",
+          "opponent": "@Chi",
+          "proj": 13.3,
+          "fpts": 17.8
+        }
+      },
+      {
+        "slot": "TE",
+        "player": {
+          "name": "Sam LaPorta",
+          "team": "Det",
+          "position": "TE",
+          "opponent": "@Bal",
+          "proj": 12.1,
+          "fpts": 7.3
+        }
+      },
+      {
+        "slot": "FLEX",
+        "player": {
+          "name": "Marvin Harrison Jr.",
+          "team": "Ari",
+          "position": "WR",
+          "opponent": "@SF",
+          "proj": 13.1,
+          "fpts": 7.4
+        }
+      },
+      {
+        "slot": "D/ST",
+        "player": {
+          "name": "Broncos D/ST",
+          "team": "Den",
+          "position": "D/ST",
+          "opponent": "@LAC",
+          "proj": 4.7,
+          "fpts": 8.0
+        }
+      },
+      {
+        "slot": "K",
+        "player": {
+          "name": "Chris Boswell",
+          "team": "Pit",
+          "position": "K",
+          "opponent": "@NE",
+          "proj": 8.2,
+          "fpts": 3.0
+        }
+      }
+    ],
+    "bench": [
+      {
+        "slot": "Bench",
+        "player": {
+          "name": "Travis Hunter",
+          "team": "Jax",
+          "position": "WR",
+          "opponent": "Hou",
+          "proj": 11.8,
+          "fpts": 3.1
+        }
+      },
+      {
+        "slot": "Bench",
+        "player": {
+          "name": "Colston Loveland",
+          "team": "Chi",
+          "position": "TE",
+          "opponent": "Dal",
+          "proj": 4.4,
+          "fpts": 4.1
+        }
+      },
+      {
+        "slot": "Bench",
+        "player": {
+          "name": "Ravens D/ST",
+          "team": "Bal",
+          "position": "D/ST",
+          "opponent": "Det",
+          "proj": 3.7,
+          "fpts": -6.0
+        }
+      },
+      {
+        "slot": "Bench",
+        "player": {
+          "name": "Calvin Austin III",
+          "team": "Pit",
+          "position": "WR",
+          "opponent": "@NE",
+          "proj": 8.9,
+          "fpts": 12.4
+        }
+      },
+      {
+        "slot": "Bench",
+        "player": {
+          "name": "Kenneth Gainwell",
+          "team": "Pit",
+          "position": "RB",
+          "opponent": "@NE",
+          "proj": 10.8,
+          "fpts": 9.6
+        }
+      },
+      {
+        "slot": "Bench",
+        "player": {
+          "name": "DJ Giddens",
+          "team": "Ind",
+          "position": "RB",
+          "opponent": "@Ten",
+          "proj": 0.8,
+          "fpts": 0.3
+        }
+      },
+      {
+        "slot": "Bench",
+        "player": {
+          "name": "Austin Ekeler",
+          "team": "Wsh",
+          "position": "RB",
+          "opponent": "LV",
+          "proj": 0.0,
+          "fpts": 0.0
+        }
+      }
+    ],
+    "ir": [
+      {
+        "slot": "IR",
+        "player": {
+          "name": "",
+          "team": "",
+          "position": "",
+          "opponent": "",
+          "proj": null,
+          "fpts": null
+        }
+      }
+    ],
+    "totals": {
+      "proj": 122.0,
+      "fpts": 82.26
+    }
+  },
+  "team_b": {
+    "name": "Berns",
+    "record": "2-4-0, 4th in Mole Slips Division",
+    "division": "",
+    "rank": "",
+    "starters": [
+      {
+        "slot": "QB",
+        "player": {
+          "name": "Drake Maye",
+          "team": "NE",
+          "position": "QB",
+          "opponent": "Pit",
+          "proj": 20.7,
+          "fpts": 20.72
+        }
+      },
+      {
+        "slot": "RB",
+        "player": {
+          "name": "Christian McCaffrey",
+          "team": "SF",
+          "position": "RB",
+          "opponent": "Ari",
+          "proj": 21.6,
+          "fpts": 24.0
+        }
+      },
+      {
+        "slot": "RB",
+        "player": {
+          "name": "J.K. Dobbins",
+          "team": "Den",
+          "position": "RB",
+          "opponent": "@LAC",
+          "proj": 12.2,
+          "fpts": 15.3
+        }
+      },
+      {
+        "slot": "WR",
+        "player": {
+          "name": "DK Metcalf",
+          "team": "Pit",
+          "position": "WR",
+          "opponent": "@NE",
+          "proj": 15.0,
+          "fpts": 12.2
+        }
+      },
+      {
+        "slot": "WR",
+        "player": {
+          "name": "DeVonta Smith",
+          "team": "Phi",
+          "position": "WR",
+          "opponent": "LAR",
+          "proj": 12.7,
+          "fpts": 20.0
+        }
+      },
+      {
+        "slot": "TE",
+        "player": {
+          "name": "Mark Andrews",
+          "team": "Bal",
+          "position": "TE",
+          "opponent": "Det",
+          "proj": 9.5,
+          "fpts": 27.1
+        }
+      },
+      {
+        "slot": "FLEX",
+        "player": {
+          "name": "Brian Thomas Jr.",
+          "team": "Jax",
+          "position": "WR",
+          "opponent": "Hou",
+          "proj": 15.9,
+          "fpts": 7.5
+        }
+      },
+      {
+        "slot": "D/ST",
+        "player": {
+          "name": "Rams D/ST",
+          "team": "LAR",
+          "position": "D/ST",
+          "opponent": "@Phi",
+          "proj": 5.6,
+          "fpts": 7.0
+        }
+      },
+      {
+        "slot": "K",
+        "player": {
+          "name": "Tyler Loop",
+          "team": "Bal",
+          "position": "K",
+          "opponent": "Det",
+          "proj": 8.6,
+          "fpts": 7.0
+        }
+      }
+    ],
+    "bench": [
+      {
+        "slot": "Bench",
+        "player": {
+          "name": "Jayden Daniels",
+          "team": "Wsh",
+          "position": "QB",
+          "opponent": "LV",
+          "proj": 0.0,
+          "fpts": 0.0
+        }
+      },
+      {
+        "slot": "Bench",
+        "player": {
+          "name": "David Montgomery",
+          "team": "Det",
+          "position": "RB",
+          "opponent": "@Bal",
+          "proj": 13.2,
+          "fpts": 31.4
+        }
+      },
+      {
+        "slot": "Bench",
+        "player": {
+          "name": "Jakobi Meyers",
+          "team": "LV",
+          "position": "WR",
+          "opponent": "@Wsh",
+          "proj": 15.1,
+          "fpts": 9.3
+        }
+      },
+      {
+        "slot": "Bench",
+        "player": {
+          "name": "Cam Skattebo",
+          "team": "NYG",
+          "position": "RB",
+          "opponent": "KC",
+          "proj": 10.4,
+          "fpts": 24.1
+        }
+      },
+      {
+        "slot": "Bench",
+        "player": {
+          "name": "Josh Downs",
+          "team": "Ind",
+          "position": "WR",
+          "opponent": "@Ten",
+          "proj": 8.8,
+          "fpts": 5.4
+        }
+      },
+      {
+        "slot": "Bench",
+        "player": {
+          "name": "Braelon Allen",
+          "team": "NYJ",
+          "position": "RB",
+          "opponent": "@TB",
+          "proj": 4.1,
+          "fpts": 6.7
+        }
+      },
+      {
+        "slot": "Bench",
+        "player": {
+          "name": "Jake Elliott",
+          "team": "Phi",
+          "position": "K",
+          "opponent": "LAR",
+          "proj": 8.4,
+          "fpts": 3.0
+        }
+      }
+    ],
+    "ir": [
+      {
+        "slot": "IR",
+        "player": {
+          "name": "",
+          "team": "",
+          "position": "",
+          "opponent": "",
+          "proj": null,
+          "fpts": null
+        }
+      }
+    ],
+    "totals": {
+      "proj": 121.9,
+      "fpts": 140.82
+    }
+  }
+}

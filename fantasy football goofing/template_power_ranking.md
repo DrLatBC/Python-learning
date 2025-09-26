@@ -1,85 +1,51 @@
-# 🏈 Week X Power Rankings: [Insert Dramatic Headline]
+Fantasy Football Power Rankings — Week {{WEEK_NUMBER}}
 
-[Opening paragraph or two with storylines of the week. Mention crazy comebacks, blowouts, injuries, hot-mic moments, or transaction drama. Keep it conversational, ESPN-column style, and most importantly don't biased results towards any particular team, everyone gets roasted and everyone is fair game.]
+Tiny intro line with a wink. Keep it snappy, one sentence max. Add one emoji.
 
----
+🏆 Awards
 
-## 📊 League Nuggets
+Offensive Player of the Week: {{PLAYER}} ({{POS}}, {{TEAM_DISPLAY}}) — {{POINTS}}. One short hype sentence with 1 emoji.
 
-- **🔥 Highest Scorer:** [Team Name] – [Points]
-- **🤯 Weirdest Stat:** [Funny/awkward stat like negative QB or kicker outscoring WR1 from this week only]
-- **💸 Transaction Theater:** [Highlight one funny/expensive/chaotic transaction move from this week, if none then just skip entirely]
-- 🪑 **Bench Baller:** [highest scoring player left on the bench, brief description of how big/small of a deal it was in their matchup.]
-- 🫠 **Player meltdown:** [highlight the biggest player specific flop of the week that started]
+Defense of the Week: {{DST_NAME}} ({{TEAM_DISPLAY}}) — {{POINTS}}. One short quip with 1 emoji.
 
----
+Bench Baller: {{PLAYER}} ({{POS}}, {{TEAM_DISPLAY}}) — {{POINTS}} from the bench. One short roast with 1 emoji.
 
-# 🥇 Power Rankings
+📌 League Nuggets
 
-**1. [Team Name] ([Record], ⬆️/⬇️/↔️)**
+{{NUGGET_1}}
 
-**2. [Team Name] ([Record], ⬆️/⬇️/↔️)**
+{{NUGGET_2}}
 
-**3. [Team Name] ([Record], ⬆️/⬇️/↔️)**
+{{NUGGET_3}}
 
-**4. [Team Name] ([Record], ⬆️/⬇️/↔️)**
+{{NUGGET_4_OPTIONAL}}
 
-**5. [Team Name] ([Record], ⬆️/⬇️/↔️)**
+{{NUGGET_5_OPTIONAL}}
 
-**6. [Team Name] ([Record], ⬆️/⬇️/↔️)**
+📊 Power Rankings
 
-**7. [Team Name] ([Record], ⬆️/⬇️/↔️)**
+{{TEAM_1_DISPLAY}} ({{RECORD_1}}){{One-to-three sentences that mention the Week {{WEEK_NUMBER}} result succinctly, give a vibe check, and include exactly one emoji. No stat dump.}}
 
-**8. [Team Name] ([Record], ⬆️/⬇️/↔️)**
+{{TEAM_2_DISPLAY}} ({{RECORD_2}}){{Blurb with one emoji.}}
 
-**9. [Team Name] ([Record], ⬆️/⬇️/↔️)**
+{{TEAM_3_DISPLAY}} ({{RECORD_3}}){{Blurb with one emoji.}}
 
-**10. [Team Name] ([Record], ⬆️/⬇️/↔️)**
+{{TEAM_4_DISPLAY}} ({{RECORD_4}}){{Blurb with one emoji.}}
 
-**11. [Team Name] ([Record], ⬆️/⬇️/↔️)**
+{{TEAM_5_DISPLAY}} ({{RECORD_5}}){{Blurb with one emoji.}}
 
-**12. [Team Name] ([Record], ⬆️/⬇️/↔️)**
+{{TEAM_6_DISPLAY}} ({{RECORD_6}}){{Blurb with one emoji.}}
 
-*Note: every team gets extra blurbs like:*
+{{TEAM_7_DISPLAY}} ({{RECORD_7}}){{Blurb with one emoji.}}
 
-1. *This week’s result — how they scored, won, or lost.*
-2. *Spotlight detail — one player, start/sit call, or transaction that defined them.*
-3. *Outlook or vibe — where they’re trending, ceiling/floor, or narrative.*
+{{TEAM_8_DISPLAY}} ({{RECORD_8}}){{Blurb with one emoji.}}
 
- 
+{{TEAM_9_DISPLAY}} ({{RECORD_9}}){{Blurb with one emoji.}}
 
-- *Highlight interesting transactions (both smart and boneheaded), keep bottom-tier roasts more lighthearted, and lean on memes/pop culture references to keep it dynamic.* 
-- *For 2 random teams in the top 6 include a signature win/loss.*
-- *It's important these rankings are COMPLETELY unbiased towards any team. Even me (your user) is fair game for roasts and dropping down the list.*
-- *If a player is mentioned in ******Dramatic Headline******, League Nuggets, or Weekly Awards keep their blurb mentions to a minimum. We don't want 1 player getting mentioned 5 times.* 
+{{TEAM_10_DISPLAY}} ({{RECORD_10}}){{Blurb with one emoji.}}
 
----
+{{TEAM_11_DISPLAY}} ({{RECORD_11}}){{Blurb with one emoji.}}
 
-## 🏆 Weekly Awards
+{{TEAM_12_DISPLAY}} ({{RECORD_12}}){{Blurb with one emoji.}}
 
-🚀 **Offensive Player of the Week**: [highest scoring player scoreline, brief acquisition details. starting only NO bench.]
-
-🛡️ **D/ST of the week:** [highest scoring defense scoreline, brief acquisition details. starting ONLY no bench. ]
-
-**🎮 Game of the Week:** [Matchup, scoreline, and why it was dramatic.]\
-**💀 Flop of the Week:** [Fantasy team that faceplanted hardest. Focus on full team failures.]\
-**😱 Team Nobody Wants to Play:** [Hot riser, high-ceiling roster, or the scariest “underdog.”]
-
----
-
-## 📖 Emoji Legend (running log)
-
-- 🏈 Section header (weekly column title)
-- 📊 League nuggets section
-- 🥇 Rankings header
-- 🔥 Highest scorer
-- 💩 Biggest flop
-- 🤯 Weird stat
-- 💸 Transaction drama
-- 🎮 Game of the Week
-- 💀 Flop of the Week
-- 😱 Team Nobody Wants to Play
-- 🚀 Offensive Player of the Week
-- 🛡️ Defense of the week
-- 🫠 Player Meltdown
-- 🪑 Bench Baller (biggest scorer left on the bench)
+Footer one-liner if desired. No tables. No citations.
